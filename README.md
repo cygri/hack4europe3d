@@ -13,3 +13,7 @@ Hack4Europe 3D exhibition app
 # TODO
 
 * ...
+
+# Similar stuff / inspiration
+
+* [Three.js 3D maze](http://www.demonixis.net/lab/index.php?p=threejs-maze3d)
