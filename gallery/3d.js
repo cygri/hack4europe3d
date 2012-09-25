@@ -232,8 +232,18 @@
     function handleKeys() {
 		if( currentlyPressedKeys[16]) {
 			// q
-			// add artwork
-				placeArtwork( 10, 10, 0, 5, 5,"images/buildingLayout/floor.png", 256, 256 );
+			// toggle wall on or off
+			//if( !highlighterIsOn ) {
+				moveHighlighter( 2, 2, wallFace );
+				//alert( "highlighting face " + wallFace );
+				wallFace++;
+				if( wallFace >= 4 ) {
+					wallFace = 0;
+				}
+				highlighterIsOn = true;
+			//} else {
+				//highlighterIsOn = false;
+			//}
 			currentlyPressedKeys[16] = false;
 		}
 	
@@ -525,19 +535,19 @@
 	var artworksVertexPositionBuffer = [];
 	var artworksTextureCoordBuffer = [];
 	var artworksTextureNumber = [];
+
 	var artworkDefaultScale = 1.0;
 	var artworkDistanceFromWall = 0.2;
 	function placeArtwork( gridX, gridY, face, localX, localY, artworkURL, artworkWidth, artworkHeight ) {
-		var artworks = [];
+        var distanceFromSurface = artworkDistanceFromWall;
         artworks[numArtworks] = { centerX: localX, centerY: localY, imageURL: artworkURL,
 									subscript: numArtworks, width: artworkWidth, height: artworkHeight,
 									scale: artworkDefaultScale };
 		// create texture
 		artworksTextures[numArtworks] = gl.createTexture();
         artworksTextures[numArtworks].image = new Image();
-		var tmp = numArtworks;
         artworksTextures[numArtworks].image.onload = function () {
-            handleLoadedTexture(artworksTextures[tmp])
+            handleLoadedTexture(artworksTextures[numArtworks])
         }
         artworksTextures[numArtworks].image.src = artworks[numArtworks].imageURL;
 		
@@ -549,76 +559,75 @@
 			vertexTextureCoords[(k*2)] = vertexFactorMap[k][2];
 			vertexTextureCoords[(k*2)+1] = vertexFactorMap[k][3];
 		}
-		var x = gridX;
-		var y = gridY;
-		
+		var x = artworks[numArtworks].gridX;
+		var y = artworks[numArtworks].gridY;
 		if( face == 2 ) { //west
-				vertexPositions = [ (x * wallWidth) - artworkDistanceFromWall, (wallWidth * vertexFactorMap[0][1] ) ,
+				vertexPositions = [ (x * wallWidth) - distanceFromSurface, (wallWidth * vertexFactorMap[0][1] ) ,
 									(y * wallWidth) + (wallWidth * vertexFactorMap[0][0] ),
-								(x * wallWidth)- artworkDistanceFromWall, (wallWidth * vertexFactorMap[1][1] ),
+								(x * wallWidth)- distanceFromSurface, (wallWidth * vertexFactorMap[1][1] ),
 									(y * wallWidth) + (wallWidth * vertexFactorMap[1][0] ),
-								(x * wallWidth)- artworkDistanceFromWall, (wallWidth * vertexFactorMap[2][1] ),
+								(x * wallWidth)- distanceFromSurface, (wallWidth * vertexFactorMap[2][1] ),
 									(y * wallWidth) + (wallWidth * vertexFactorMap[2][0] ),
-								(x * wallWidth)- artworkDistanceFromWall, (wallWidth * vertexFactorMap[3][1] ),
+								(x * wallWidth)- distanceFromSurface, (wallWidth * vertexFactorMap[3][1] ),
 									(y * wallWidth) + (wallWidth * vertexFactorMap[3][0] ),
-								(x * wallWidth)- artworkDistanceFromWall, (wallWidth * vertexFactorMap[4][1] ),
+								(x * wallWidth)- distanceFromSurface, (wallWidth * vertexFactorMap[4][1] ),
 									(y * wallWidth) + (wallWidth * vertexFactorMap[4][0] ),
-								(x * wallWidth)- artworkDistanceFromWall, (wallWidth * vertexFactorMap[5][1] ),
+								(x * wallWidth)- distanceFromSurface, (wallWidth * vertexFactorMap[5][1] ),
 									(y * wallWidth) + (wallWidth * vertexFactorMap[5][0] ) ];
 			} else if( face == 3 ) { //east
-				vertexPositions = [ ((x+1) * wallWidth) + artworkDistanceFromWall, (wallWidth * vertexFactorMap[0][1] ),
+				vertexPositions = [ ((x+1) * wallWidth) + distanceFromSurface, (wallWidth * vertexFactorMap[0][1] ),
 									(y * wallWidth) + (wallWidth * vertexFactorMap[0][0] ),
-								((x+1) * wallWidth) + artworkDistanceFromWall, (wallWidth * vertexFactorMap[1][1] ),
+								((x+1) * wallWidth) + distanceFromSurface, (wallWidth * vertexFactorMap[1][1] ),
 									(y * wallWidth) + (wallWidth * vertexFactorMap[1][0] ),
-								((x+1) * wallWidth) + artworkDistanceFromWall, (wallWidth * vertexFactorMap[2][1] ),
+								((x+1) * wallWidth) + distanceFromSurface, (wallWidth * vertexFactorMap[2][1] ),
 									(y * wallWidth) + (wallWidth * vertexFactorMap[2][0] ),
-								((x+1) * wallWidth) + artworkDistanceFromWall, (wallWidth * vertexFactorMap[3][1] ),
+								((x+1) * wallWidth) + distanceFromSurface, (wallWidth * vertexFactorMap[3][1] ),
 									(y * wallWidth) + (wallWidth * vertexFactorMap[3][0] ),
-								((x+1) * wallWidth) + artworkDistanceFromWall, (wallWidth * vertexFactorMap[4][1] ),
+								((x+1) * wallWidth) + distanceFromSurface, (wallWidth * vertexFactorMap[4][1] ),
 									(y * wallWidth) + (wallWidth * vertexFactorMap[4][0] ),
-								((x+1) * wallWidth) + artworkDistanceFromWall, (wallWidth * vertexFactorMap[5][1] ),
+								((x+1) * wallWidth) + distanceFromSurface, (wallWidth * vertexFactorMap[5][1] ),
 									(y * wallWidth) + (wallWidth * vertexFactorMap[5][0] ) ];
 			} else if( face == 0 ) { //north?
 				vertexPositions = [ (x * wallWidth) + (wallWidth * vertexFactorMap[0][0] ) ,
-									(wallWidth * vertexFactorMap[0][1]), (y * wallWidth) - artworkDistanceFromWall,
+									(wallWidth * vertexFactorMap[0][1]), (y * wallWidth) - distanceFromSurface,
 								(x * wallWidth) + (wallWidth * vertexFactorMap[1][0] ),
-									(wallWidth * vertexFactorMap[1][1]), (y * wallWidth) - artworkDistanceFromWall,
+									(wallWidth * vertexFactorMap[1][1]), (y * wallWidth) - distanceFromSurface,
 								(x * wallWidth) + (wallWidth * vertexFactorMap[2][0] ),
-									(wallWidth * vertexFactorMap[2][1]), (y * wallWidth) - artworkDistanceFromWall,
+									(wallWidth * vertexFactorMap[2][1]), (y * wallWidth) - distanceFromSurface,
 								(x * wallWidth) + (wallWidth * vertexFactorMap[3][0] ),
-									(wallWidth * vertexFactorMap[3][1]), (y * wallWidth) - artworkDistanceFromWall,
+									(wallWidth * vertexFactorMap[3][1]), (y * wallWidth) - distanceFromSurface,
 								(x * wallWidth) + (wallWidth * vertexFactorMap[4][0] ),
-									(wallWidth * vertexFactorMap[4][1]), (y * wallWidth) - artworkDistanceFromWall,
+									(wallWidth * vertexFactorMap[4][1]), (y * wallWidth) - distanceFromSurface,
 								(x * wallWidth) + (wallWidth * vertexFactorMap[5][0] ),
-									(wallWidth * vertexFactorMap[5][1]), (y * wallWidth) - artworkDistanceFromWall ];
+									(wallWidth * vertexFactorMap[5][1]), (y * wallWidth) - distanceFromSurface ];
 			} else if( face == 1 ) { //south
 				vertexPositions = [ (x * wallWidth) + (wallWidth * vertexFactorMap[0][0] ),
-									(wallWidth * vertexFactorMap[0][1]), ((y+1) * wallWidth) + artworkDistanceFromWall,
+									(wallWidth * vertexFactorMap[0][1]), ((y+1) * wallWidth) + distanceFromSurface,
 								(x * wallWidth) + (wallWidth * vertexFactorMap[1][0] ),
-									(wallWidth * vertexFactorMap[1][1]), ((y+1) * wallWidth) + artworkDistanceFromWall,
+									(wallWidth * vertexFactorMap[1][1]), ((y+1) * wallWidth) + distanceFromSurface,
 								(x * wallWidth) + (wallWidth * vertexFactorMap[2][0] ),
-									(wallWidth * vertexFactorMap[2][1]), ((y+1) * wallWidth) + artworkDistanceFromWall,
+									(wallWidth * vertexFactorMap[2][1]), ((y+1) * wallWidth) + distanceFromSurface,
 								(x * wallWidth) + (wallWidth * vertexFactorMap[3][0] ),
-									(wallWidth * vertexFactorMap[3][1]), ((y+1) * wallWidth) + artworkDistanceFromWall,
+									(wallWidth * vertexFactorMap[3][1]), ((y+1) * wallWidth) + distanceFromSurface,
 								(x * wallWidth) + (wallWidth * vertexFactorMap[4][0] ),
-									(wallWidth * vertexFactorMap[4][1]), ((y+1) * wallWidth) + artworkDistanceFromWall,
+									(wallWidth * vertexFactorMap[4][1]), ((y+1) * wallWidth) + distanceFromSurface,
 								(x * wallWidth) + (wallWidth * vertexFactorMap[5][0] ),
-									(wallWidth * vertexFactorMap[5][1]), ((y+1) * wallWidth) + artworkDistanceFromWall ];
+									(wallWidth * vertexFactorMap[5][1]), ((y+1) * wallWidth) + distanceFromSurface ];
 			}
 		var vertexCount = 6;
 		
 		// push vertical walls to GL arrays
-		artworksVertexPositionBuffer[numArtworks] = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, artworksVertexPositionBuffer[numArtworks]);
+		artworksVertexPositionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, artworksVertexPositionBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.DYNAMIC_DRAW);
-        artworksVertexPositionBuffer[numArtworks].itemSize = 3;
-        artworksVertexPositionBuffer[numArtworks].numItems = vertexCount;
+        artworksVertexPositionBuffer.itemSize = 3;
+        artworksVertexPositionBuffer.numItems = vertexCount;
 
-        artworksTextureCoordBuffer[numArtworks] = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, artworksTextureCoordBuffer[numArtworks]);
+        artworksTextureCoordBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, artworksTextureCoordBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        artworksTextureCoordBuffer[numArtworks].itemSize = 2;
-        artworksTextureCoordBuffer[numArtworks].numItems = vertexCount;
+        artworksTextureCoordBuffer.itemSize = 2;
+        artworksTextureCoordBuffer.numItems = vertexCount;
 		
 		numArtworks++;
 	}
@@ -679,9 +688,6 @@
 			gl.drawArrays(gl.TRIANGLES, 0, buildingLayoutVertexPositionBuffer[i].numItems);
 		}
 		for( var i = 0 ; i < numArtworks ; i++ ) {
-			//var artworksVertexPositionBuffer = [];
-			//var artworksTextureCoordBuffer = [];
-			//var artworksTextureNumber = [];
 			gl.activeTexture(gl.TEXTURE0);
 			gl.bindTexture(gl.TEXTURE_2D, artworksTextures[artworks[i].subscript]);
 			gl.uniform1i(shaderProgram.samplerUniform, 0);
