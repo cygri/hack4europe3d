@@ -50,7 +50,6 @@ Hack4Europe 3D exhibition app
 * Enable "wall editing tool"
 * Highlight wall/floor/ceiling under mouse
 * Clicking toggles
-* Can't change the square you're standing in
 
 ## Proper image building
 

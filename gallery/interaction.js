@@ -11,6 +11,7 @@ var clickPosVertexTextureCoordBuffer = null;
 
 var buildHandlers = {
     clickFloor: function(gridX, gridZ, localX, localY) {
+        if (gridX == toGrid(xPos) && gridZ == toGrid(zPos)) return;
         cubeMap[gridZ][gridX] = 0;
     },
     clickWall: function(gridX, gridZ, direction, localX, localY) {
@@ -198,20 +199,8 @@ function getMouseHit() {
         mouseHit = horizontalWallHit;
     }
     if (mouseHit[0] == Number.MAX_VALUE) {
-        document.getElementById('mousepos').childNodes[0].nodeValue = 'nothing';
         return null;
     }
-
-    if (mouseHit[3] == 'F') {
-        var s = 'Floor at (';
-    } else if (mouseHit[3] == 'C') {
-        var s = 'Ceiling at (';
-    } else {
-        var s = mouseHit[3] + ' wall at (';
-    }
-    s += mouseHit[1] + ',' + mouseHit[2] + ') with local coords (';
-    s += (Math.round(mouseHit[4] * 10) / 10) + ',' + (Math.round(mouseHit[5] * 10) / 10) + '), distance ' + Math.round(mouseHit[0] * 1000) / 1000;
-    document.getElementById('mousepos').childNodes[0].nodeValue = s;
     return mouseHit;
 }
 
