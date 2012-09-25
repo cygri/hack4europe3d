@@ -4,8 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Visualising Dissent: Posters Against the Wars in Iraq and Vietnam</title>
 
-<script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+<script type="text/javascript" src="gl-matrix-min.js"></script>
 <script type="text/javascript" src="webgl-utils.js"></script>
+<script type="text/javascript" src="interaction.js"></script>
 
 <script id="shader-fs" type="x-shader/x-fragment">
     precision mediump float;
@@ -3169,6 +3170,8 @@
         gl.uniform1i(shaderProgram.samplerUniform, 0);
         setMatrixUniforms();
         gl.drawArrays(gl.TRIANGLES, 0, picturePanel4VertexPositionBuffer.numItems);
+
+        drawClickPos();
     }
 
 
@@ -3311,6 +3314,7 @@
 		animateScreenSlideShow();
         drawScene();
         animate();
+        animate2();
     }
 
 
@@ -3327,6 +3331,8 @@
 
         document.onkeydown = handleKeyDown;
         document.onkeyup = handleKeyUp;
+
+        initInteraction();
 
         tick();
     }
@@ -3409,5 +3415,7 @@
         	<br/>Programmed by <a href="../index.html">Simon Kenny</a><br/><a href="mailto:simon.a.kenny@gmail.com">simon.a.kenny@gmail.com</a></p>
         <img id="texturedisplay"/>
     </div>
+
+    <p id="debug">debug</p>
 </body>
 </html>

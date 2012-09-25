@@ -39,8 +39,9 @@ function initInteraction() {
     initClickPos();
     var canvas = document.getElementById(canvasId);
     canvas.onclick = function(event) {
-        clickPos = vec3.create(mouseVector);
-        vec3.add(clickPos, cameraPosition);
+//        clickPos = vec3.create(mouseVector);
+//        vec3.add(clickPos, cameraPosition);
+        return;
         if (mouseHit != null) {
             if (mouseHit[3] == 'C') {
                 if (handlers.clickCeiling) {
@@ -87,9 +88,7 @@ function initClickPos() {
     clickPosVertexTextureCoordBuffer.numItems = 3;
 }
 
-function animate2() {
-    cameraPosition = vec3.create([xPos, yPos, zPos]);
-
+function getMouseHit() {
     // What is the mouse pointing at?
     var ceilingHit = null;
     var floorHit = null;
@@ -104,26 +103,26 @@ function animate2() {
         var hitZ = mouseVector[2] / mouseVector[1] * camToCeiling + cameraPosition[2];
         var gridX = toGrid(hitX);
         var gridZ = toGrid(hitZ);
-        if (gridX >= 0 && gridZ >=0 && gridX < mapWidth && gridZ < mapHeight) {
+        if (gridX >= 0 && gridZ >= 0 && gridX < mapWidth && gridZ < mapHeight) {
             ceilingHit = [ceilingDist, gridX, gridZ, 'C', hitX - toWorld(gridX), hitZ - toWorld(gridZ)];
         }
     }
     // Check for hit with the floor
     if (cameraPosition[1] > 0 && mouseVector[1] < 0) {
         // will hit floor eventually
-        var camToFloor = cameraPosition[1];
+        var camToFloor = -cameraPosition[1];
         var floorDist = camToFloor / mouseVector[1];
         var hitX = mouseVector[0] / mouseVector[1] * camToFloor + cameraPosition[0];
         var hitZ = mouseVector[2] / mouseVector[1] * camToFloor + cameraPosition[2];
         var gridX = toGrid(hitX);
         var gridZ = toGrid(hitZ);
-        if (gridX >= 0 && gridZ >=0 && gridX < mapWidth && gridZ < mapHeight) {
+        if (gridX >= 0 && gridZ >= 0 && gridX < mapWidth && gridZ < mapHeight) {
             floorHit = [floorDist, gridX, gridZ, 'F', hitX - toWorld(gridX), hitZ - toWorld(gridZ)];
         }
     }
-    // Check for hits with north-south walls
-    if (!isWall(toGrid(cameraPosition[0]), toGrid(cameraPosition[1])) && mouseVector[0] != 0) {
-        // will hit a north-south (vertical) wall eventually
+    // Check for hits with east-west walls
+    if (!isWall(toGrid(cameraPosition[0]), toGrid(cameraPosition[2])) && mouseVector[0] != 0) {
+        // will hit a east-west (horizontal) wall eventually
         var gridX = toGrid(cameraPosition[0]);
         if (mouseVector[0] > 0) {
             var stepX = 1;
@@ -153,9 +152,9 @@ function animate2() {
             gridX += stepX;
         }
     }
-    // Check for hits with east-west walls
-    if (!isWall(toGrid(cameraPosition[2]), toGrid(cameraPosition[1])) && mouseVector[2] != 0) {
-        // will hit a east-west (horizontal) wall eventually
+    // Check for hits with north-south walls
+    if (!isWall(toGrid(cameraPosition[0]), toGrid(cameraPosition[2])) && mouseVector[2] != 0) {
+        // will hit a north-south (vertical) wall eventually
         var gridZ = toGrid(cameraPosition[2]);
         if (mouseVector[2] > 0) {
             var stepZ = 1;
@@ -178,7 +177,7 @@ function animate2() {
             if (gridX < 0 || gridX > mapWidth) {
                 break;
             }
-            if (isWall(gridZ + stepZ, gridZ)) {
+            if (isWall(gridX, gridZ + stepZ)) {
                 horizontalWallHit = [intersectionDist, gridX, gridZ, wall, localX, localY];
                 break;
             }
@@ -186,7 +185,7 @@ function animate2() {
         }
     }
     // Check which of the hits is closest to the camera
-    mouseHit = [Number.MAX_VALUE];
+    var mouseHit = [Number.MAX_VALUE];
     if (ceilingHit && ceilingHit[0] < mouseHit[0]) {
         mouseHit = ceilingHit;
     }
@@ -200,20 +199,26 @@ function animate2() {
         mouseHit = horizontalWallHit;
     }
     if (mouseHit[0] == Number.MAX_VALUE) {
-        mouseHit = null;
-        document.getElementById('debug').childNodes[0].nodeValue = 'nothing';
-    } else {
-        if (mouseHit[3] == 'F') {
-            var s = 'Floor at (';
-        } else if (mouseHit[3] == 'C') {
-            var s = 'Ceiling at (';
-        } else {
-            var s = mouseHit[3] + ' wall at (';
-        }
-        s += mouseHit[1] + ',' + mouseHit[2] + ') with local coords (';
-        s += mouseHit[4] + ',' + mouseHit[5] + '), distance ' + mouseHit[0];
-        document.getElementById('debug').childNodes[0].nodeValue = s;
+        return null;
+        document.getElementById('mousepos').childNodes[0].nodeValue = 'nothing';
     }
+
+    if (mouseHit[3] == 'F') {
+        var s = 'Floor at (';
+    } else if (mouseHit[3] == 'C') {
+        var s = 'Ceiling at (';
+    } else {
+        var s = mouseHit[3] + ' wall at (';
+    }
+    s += mouseHit[1] + ',' + mouseHit[2] + ') with local coords (';
+    s += mouseHit[4] + ',' + mouseHit[5] + '), distance ' + mouseHit[0];
+    document.getElementById('mousepos').childNodes[0].nodeValue = s;
+    return mouseHit;
+}
+
+function animate2() {
+    cameraPosition = vec3.create([xPos, yPos, zPos]);
+    mouseHit = getMouseHit();
 }
 
 function toGrid(value) {
