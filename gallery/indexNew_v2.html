@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Visualising Dissent: Posters Against the Wars in Iraq and Vietnam</title>
+<title>Europeana 3D Exhibition Builder</title>
 
 <script type="text/javascript" src="gl-matrix-min.js"></script>
 <script type="text/javascript" src="webgl-utils.js"></script>
+<script type="text/javascript" src="interaction.js"></script>
 
 <script id="shader-fs" type="x-shader/x-fragment">
     precision mediump float;
@@ -573,6 +574,7 @@
 		}		
 		// debug info
 		document.getElementById("debugfeedback").textContent = xPos + ", " + yPos + "," + zPos;
+        drawClickPos();
     }
 	
 
@@ -610,6 +612,7 @@
         handleKeys();
 	    drawScene();
         animate();
+        animate2();
     }
 
 
@@ -626,6 +629,8 @@
 
         document.onkeydown = handleKeyDown;
         document.onkeyup = handleKeyUp;
+
+        initInteraction();
 
         tick();
     }
@@ -812,5 +817,7 @@
 		<p id = "debugfeedback">-</p>
         <img id="texturedisplay"/>
     </div>
+
+    <div id="debug" style="position: absolute; left: 10px; top: 10px; width: 100px">debug</div>
 </body>
 </html>
