@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Visualising Dissent: Posters Against the Wars in Iraq and Vietnam</title>
+<title>Europeana 3D Exhibition Builder</title>
 
-<script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+<script type="text/javascript" src="gl-matrix-min.js"></script>
 <script type="text/javascript" src="webgl-utils.js"></script>
+<script type="text/javascript" src="interaction.js"></script>
 
 <script id="shader-fs" type="x-shader/x-fragment">
     precision mediump float;
@@ -567,6 +568,8 @@
 			setMatrixUniforms();
 			gl.drawArrays(gl.TRIANGLES, 0, highlighterVertexPositionBuffer.numItems);
 		}		
+
+        drawClickPos();
     }
 	
 
@@ -604,6 +607,7 @@
         handleKeys();
 	    drawScene();
         animate();
+        animate2();
     }
 
 
@@ -620,6 +624,8 @@
 
         document.onkeydown = handleKeyDown;
         document.onkeyup = handleKeyUp;
+
+        initInteraction();
 
         tick();
     }
@@ -783,8 +789,10 @@
 </head>
 
 <body id="bodycss" onLoad="webGLStart();">
+<!--
 		<p id="heading" class="heading">Visualising Dissent: Posters Against the Wars in Iraq and Vietnam</p>
     	<p id="heading2" class="heading2">Curated by Candidate 200299</p>
+-->
 
 	<canvas id="lesson10-canvas" style="border: none;" width="750" height="500"></canvas>
 
@@ -798,5 +806,7 @@
         	<br/>Programmed by <a href="../index.html">Simon Kenny</a><br/><a href="mailto:simon.a.kenny@gmail.com">simon.a.kenny@gmail.com</a></p>
         <img id="texturedisplay"/>
     </div>
+
+    <div id="debug" style="position: absolute; left: 10px; top: 10px">debug</div>
 </body>
 </html>
