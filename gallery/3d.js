@@ -302,7 +302,7 @@
 	var artworksTextureCoordBuffer = [];
 	var artworksTextureNumber = [];
 	
-	var artworks[]; // expects: centerX, centerY, image, subscript, aspect, scale
+	var artworks = []; // expects: centerX, centerY, image, subscript, aspect, scale
 	var numArtworks = 0;
 	
 	
@@ -535,11 +535,12 @@
 	var artworksVertexPositionBuffer = [];
 	var artworksTextureCoordBuffer = [];
 	var artworksTextureNumber = [];
-	/*
+
 	var artworkDefaultScale = 1.0;
 	var artworkDistanceFromWall = 0.2;
 	function placeArtwork( gridX, gridY, face, localX, localY, artworkURL, artworkWidth, artworkHeight ) {
-		var artworks[numArtworks] = { centerX: localX, centerY: localY, imageURL: artworkURL,
+		var artworks = [];
+        artworks[numArtworks] = { centerX: localX, centerY: localY, imageURL: artworkURL,
 									subscript: numArtworks, width: artworkWidth, height: artworkHeight,
 									scale: artworkDefaultScale };
 		// create texture
@@ -630,7 +631,6 @@
 		
 		numArtworks++;
 	}
-	*/
 	
 	function pushVertexToArrays( spacialCoords, textureCoords, x, y, z, u, v ) {
 		spacialCoords.push(x);
