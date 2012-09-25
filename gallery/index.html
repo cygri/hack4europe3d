@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Visualising Dissent: Posters Against the Wars in Iraq and Vietnam</title>
+<title>Europeana 3D Exhibition Builder</title>
 
 <script type="text/javascript" src="gl-matrix-min.js"></script>
 <script type="text/javascript" src="webgl-utils.js"></script>
@@ -37,10 +37,25 @@
 
 
 <script type="text/javascript">
+	// reference by [y][x]
+	var cubeMap = [ [0,0,0,0,0,0,0],
+					[0,1,1,1,1,0,0],
+					[0,1,0,1,1,0,0],
+					[0,1,0,1,1,1,0],
+					[0,1,1,1,1,1,0],
+					[0,1,1,0,0,1,0],
+					[0,0,0,0,0,0,0] ] ;
+	
+	
+	var mapWidth = 7;
+	var mapHeight = 7;
+	
+	var ceilingHeight = 10;
+	var wallWidth = 10;
 
     var gl;
 	
-	var standingHeight = 3;// how tall we are. really affects how big the world feels
+	var standingHeight = 6;// how tall we are. really affects how big the world feels
 
     function initGL(canvas) {
         try {
@@ -130,462 +145,52 @@
         gl.bindTexture(gl.TEXTURE_2D, null);
     }
 
-
-    var floorTexture;
-	var wallTexture;
-	var ceilingTexture;
-	var picture1Texture;
-	var picture2Texture;
-	var picture3Texture;
-	var picture4Texture;
-	var picture5Texture;
-	var picture6Texture;
-	var picture78Texture;
-	var picture9Texture;
-	var picture10Texture;
-	var picture11Texture;
-	var picture12Texture;
-	var picture13Texture;
-	var picture14Texture;
-	var picture15Texture;
-	var picture16Texture;
-	var picture17Texture;
-	var picture18Texture;
-	var picture19Texture;
-	var picture20Texture;
-	var picture21Texture;
-	var picture21Texture;
-	var picture22Texture;
-	var picture23Texture;
-	var picture24Texture;
-	var picture25Texture;
-	var picture26Texture;
-	var pictureScreen1Texture;
-	var pictureScreen2Texture;
-	var pictureScreen3Texture;
-	var pictureScreen4Texture;
-	var pictureScreen5Texture;
-	var pictureScreen6Texture;
-	var pictureScreen7Texture;
-	var pictureScreen8Texture;
-	var pictureScreen9Texture;
-	var pictureScreen10Texture;
-	var pictureScreen11Texture;
-	var pictureScreen12Texture;
-	var pictureScreen13Texture;
-	var pictureScreen14Texture;
-	var pictureScreen15Texture;
-	var pictureScreen16Texture;
-	var pictureScreen17Texture;
-	var pictureScreen18Texture;
-	var pictureScreen19Texture;
-	var pictureScreen10Texture;
-	var pictureScreen21Texture;
-	var pictureScreen22Texture;
-	var pictureScreen23Texture;
-	var pictureScreen24Texture;
-	var pictureScreen25Texture;
-	var pictureScreen26Texture;
-	var pictureScreenTexture;
-	var picturePanel1Texture;
-	var picturePanel2Texture;
-	var picturePanel3Texture;
-	var picturePanel4Texture;
 	
+	var buildingTextures = [];	
+    var floorTextureSubscript = 0;
+	var wallTextureSubscript = 1;
+	var ceilingTextureSubscript = 2;
 	
-
+	var highlighterTextures = [];
+	var highlighterFloorTextureSubscript = 0;
+	var highlighterWallTextureSubscript = 1;
+	
     function initTexture() {
-	 	floorTexture = gl.createTexture();
-        floorTexture.image = new Image();
-        floorTexture.image.onload = function () {
-            handleLoadedTexture(floorTexture)
+	 	buildingTextures[floorTextureSubscript] = gl.createTexture();
+        buildingTextures[floorTextureSubscript].image = new Image();
+        buildingTextures[floorTextureSubscript].image.onload = function () {
+            handleLoadedTexture(buildingTextures[floorTextureSubscript])
         }
-        floorTexture.image.src = "images/floor_wood_1_256.gif";
+        buildingTextures[floorTextureSubscript].image.src = "images/buildingLayout/floor.png";
 		
-		wallTexture = gl.createTexture();
-        wallTexture.image = new Image();
-        wallTexture.image.onload = function () {
-            handleLoadedTexture(wallTexture)
+		buildingTextures[wallTextureSubscript] = gl.createTexture();
+        buildingTextures[wallTextureSubscript].image = new Image();
+        buildingTextures[wallTextureSubscript].image.onload = function () {
+            handleLoadedTexture(buildingTextures[wallTextureSubscript])
         }
-        wallTexture.image.src = "images/wall_large_3_256.gif";
+        buildingTextures[wallTextureSubscript].image.src = "images/buildingLayout/wall.png";
+        		
+		buildingTextures[ceilingTextureSubscript] = gl.createTexture();
+        buildingTextures[ceilingTextureSubscript].image = new Image();
+        buildingTextures[ceilingTextureSubscript].image.onload = function () {
+            handleLoadedTexture(buildingTextures[ceilingTextureSubscript])
+        }
+        buildingTextures[ceilingTextureSubscript].image.src = "images/buildingLayout/ceiling.png";
 		
-		ceilingTexture = gl.createTexture();
-        ceilingTexture.image = new Image();
-        ceilingTexture.image.onload = function () {
-            handleLoadedTexture(ceilingTexture)
+		highlighterTextures[highlighterFloorTextureSubscript] = gl.createTexture();
+        highlighterTextures[highlighterFloorTextureSubscript].image = new Image();
+        highlighterTextures[highlighterFloorTextureSubscript].image.onload = function () {
+            handleLoadedTexture(highlighterTextures[highlighterFloorTextureSubscript])
         }
-        ceilingTexture.image.src = "images/ceiling_5_256.gif";
+        highlighterTextures[highlighterFloorTextureSubscript].image.src = "images/highlighterLayout/floorHi.png";
 		
-		// Load picture textures, hardcoded... uh....		
-		picture1Texture = gl.createTexture();
-        picture1Texture.image = new Image();
-        picture1Texture.image.onload = function () {
-            handleLoadedTexture(picture1Texture)
+		highlighterTextures[highlighterWallTextureSubscript] = gl.createTexture();
+        highlighterTextures[highlighterWallTextureSubscript].image = new Image();
+        highlighterTextures[highlighterWallTextureSubscript].image.onload = function () {
+            handleLoadedTexture(highlighterTextures[highlighterWallTextureSubscript])
         }
-		picture1Texture.image.src = "images/posters/1.gif";
-		
-		picture2Texture = gl.createTexture();
-        picture2Texture.image = new Image();
-        picture2Texture.image.onload = function () {
-            handleLoadedTexture(picture2Texture)
-        }
-		picture2Texture.image.src = "images/posters/2.gif";
-		
-		picture3Texture = gl.createTexture();
-        picture3Texture.image = new Image();
-        picture3Texture.image.onload = function () {
-            handleLoadedTexture(picture3Texture)
-        }
-		picture3Texture.image.src = "images/posters/3.gif";
-		
-		picture4Texture = gl.createTexture();
-        picture4Texture.image = new Image();
-        picture4Texture.image.onload = function () {
-            handleLoadedTexture(picture4Texture)
-        }
-		picture4Texture.image.src = "images/posters/4.gif";
-		
-		picture5Texture = gl.createTexture();
-        picture5Texture.image = new Image();
-        picture5Texture.image.onload = function () {
-            handleLoadedTexture(picture5Texture)
-        }
-		picture5Texture.image.src = "images/posters/5.gif";
-		
-		picture6Texture = gl.createTexture();
-        picture6Texture.image = new Image();
-        picture6Texture.image.onload = function () {
-            handleLoadedTexture(picture6Texture)
-        }
-		picture6Texture.image.src = "images/posters/6.gif";
-		
-		picture7Texture = gl.createTexture();
-        picture7Texture.image = new Image();
-        picture7Texture.image.onload = function () {
-            handleLoadedTexture(picture7Texture)
-        }
-		picture7Texture.image.src = "images/posters/7.gif";
-		
-		picture8Texture = gl.createTexture();
-        picture8Texture.image = new Image();
-        picture8Texture.image.onload = function () {
-            handleLoadedTexture(picture8Texture)
-        }
-		picture8Texture.image.src = "images/posters/8.gif";
-		
-		picture9Texture = gl.createTexture();
-        picture9Texture.image = new Image();
-        picture9Texture.image.onload = function () {
-            handleLoadedTexture(picture9Texture)
-        }
-        picture9Texture.image.src = "images/posters/9.gif";
-		
-		picture10Texture = gl.createTexture();
-        picture10Texture.image = new Image();
-        picture10Texture.image.onload = function () {
-            handleLoadedTexture(picture10Texture)
-        }
-		picture10Texture.image.src = "images/posters/10.gif";
-		
-		picture11Texture = gl.createTexture();
-        picture11Texture.image = new Image();
-        picture11Texture.image.onload = function () {
-            handleLoadedTexture(picture11Texture)
-        }
-		picture11Texture.image.src = "images/posters/11.gif";
-		
-		picture12Texture = gl.createTexture();
-        picture12Texture.image = new Image();
-        picture12Texture.image.onload = function () {
-            handleLoadedTexture(picture12Texture)
-        }
-		picture12Texture.image.src = "images/posters/12.gif";
-		
-		picture13Texture = gl.createTexture();
-        picture13Texture.image = new Image();
-        picture13Texture.image.onload = function () {
-            handleLoadedTexture(picture13Texture)
-        }
-		picture13Texture.image.src = "images/posters/13.gif";
-		
-		picture14Texture = gl.createTexture();
-        picture14Texture.image = new Image();
-        picture14Texture.image.onload = function () {
-            handleLoadedTexture(picture14Texture)
-        }
-		picture14Texture.image.src = "images/posters/14.gif";
-		
-		picture15Texture = gl.createTexture();
-        picture15Texture.image = new Image();
-        picture15Texture.image.onload = function () {
-            handleLoadedTexture(picture15Texture)
-        }
-		picture15Texture.image.src = "images/posters/15.gif";
-		
-		picture16Texture = gl.createTexture();
-        picture16Texture.image = new Image();
-        picture16Texture.image.onload = function () {
-            handleLoadedTexture(picture16Texture)
-        }
-		picture16Texture.image.src = "images/posters/16.gif";
-		
-		picture17Texture = gl.createTexture();
-        picture17Texture.image = new Image();
-        picture17Texture.image.onload = function () {
-            handleLoadedTexture(picture17Texture)
-        }
-		picture17Texture.image.src = "images/posters/17.gif";
-		
-		picture18Texture = gl.createTexture();
-        picture18Texture.image = new Image();
-        picture18Texture.image.onload = function () {
-            handleLoadedTexture(picture18Texture)
-        }
-		picture18Texture.image.src = "images/posters/18.gif";
-		
-		picture19Texture = gl.createTexture();
-        picture19Texture.image = new Image();
-        picture19Texture.image.onload = function () {
-            handleLoadedTexture(picture19Texture)
-        }
-		picture19Texture.image.src = "images/posters/19.gif";
-		
-		picture20Texture = gl.createTexture();
-        picture20Texture.image = new Image();
-        picture20Texture.image.onload = function () {
-            handleLoadedTexture(picture20Texture)
-        }
-		picture20Texture.image.src = "images/posters/20.gif";
-		
-		picture21Texture = gl.createTexture();
-        picture21Texture.image = new Image();
-        picture21Texture.image.onload = function () {
-            handleLoadedTexture(picture21Texture)
-        }
-		picture21Texture.image.src = "images/posters/21.gif";
-		
-		picture22Texture = gl.createTexture();
-        picture22Texture.image = new Image();
-        picture22Texture.image.onload = function () {
-            handleLoadedTexture(picture22Texture)
-        }
-		picture22Texture.image.src = "images/posters/22.gif";
-		
-		picture23Texture = gl.createTexture();
-        picture23Texture.image = new Image();
-        picture23Texture.image.onload = function () {
-            handleLoadedTexture(picture23Texture)
-        }
-		picture23Texture.image.src = "images/posters/23.gif";
-		
-		picture24Texture = gl.createTexture();
-        picture24Texture.image = new Image();
-        picture24Texture.image.onload = function () {
-            handleLoadedTexture(picture24Texture)
-        }
-		picture24Texture.image.src = "images/posters/24.gif";
-		
-		picture25Texture = gl.createTexture();
-        picture25Texture.image = new Image();
-        picture25Texture.image.onload = function () {
-            handleLoadedTexture(picture25Texture)
-        }
-		picture25Texture.image.src = "images/posters/25.gif";
-		
-		picture26Texture = gl.createTexture();
-        picture26Texture.image = new Image();
-        picture26Texture.image.onload = function () {
-            handleLoadedTexture(picture26Texture)
-        }
-		picture26Texture.image.src = "images/posters/26.gif";
-		
-			
-		pictureScreen1Texture = gl.createTexture();
-        pictureScreen1Texture.image = new Image();
-        pictureScreen1Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen1Texture)
-        }
-		pictureScreen1Texture.image.src = "images/screen/screen1.gif";
-		pictureScreen2Texture = gl.createTexture();
-        pictureScreen2Texture.image = new Image();
-        pictureScreen2Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen2Texture)
-        }
-		pictureScreen2Texture.image.src = "images/screen/screen2.gif";
-		pictureScreen3Texture = gl.createTexture();
-        pictureScreen3Texture.image = new Image();
-        pictureScreen3Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen3Texture)
-        }
-		pictureScreen3Texture.image.src = "images/screen/screen3.gif";
-		pictureScreen4Texture = gl.createTexture();
-        pictureScreen4Texture.image = new Image();
-        pictureScreen4Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen4Texture)
-        }
-		pictureScreen4Texture.image.src = "images/screen/screen4.gif";
-		pictureScreen5Texture = gl.createTexture();
-        pictureScreen5Texture.image = new Image();
-        pictureScreen5Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen5Texture)
-        }
-		pictureScreen5Texture.image.src = "images/screen/screen5.gif";
-		pictureScreen6Texture = gl.createTexture();
-        pictureScreen6Texture.image = new Image();
-        pictureScreen6Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen6Texture)
-        }
-		pictureScreen6Texture.image.src = "images/screen/screen6.gif";
-		pictureScreen7Texture = gl.createTexture();
-        pictureScreen7Texture.image = new Image();
-        pictureScreen7Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen7Texture)
-        }
-		pictureScreen7Texture.image.src = "images/screen/screen7.gif";
-		pictureScreen8Texture = gl.createTexture();
-        pictureScreen8Texture.image = new Image();
-        pictureScreen8Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen8Texture)
-        }
-		pictureScreen8Texture.image.src = "images/screen/screen8.gif";
-		pictureScreen9Texture = gl.createTexture();
-        pictureScreen9Texture.image = new Image();
-        pictureScreen9Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen9Texture)
-        }
-		pictureScreen9Texture.image.src = "images/screen/screen9.gif";
-		pictureScreen10Texture = gl.createTexture();
-        pictureScreen10Texture.image = new Image();
-        pictureScreen10Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen10Texture)
-        }
-		pictureScreen10Texture.image.src = "images/screen/screen10.gif";
-		pictureScreen11Texture = gl.createTexture();
-        pictureScreen11Texture.image = new Image();
-        pictureScreen11Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen11Texture)
-        }
-		pictureScreen11Texture.image.src = "images/screen/screen11.gif";
-		pictureScreen12Texture = gl.createTexture();
-        pictureScreen12Texture.image = new Image();
-        pictureScreen12Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen12Texture)
-        }
-		pictureScreen12Texture.image.src = "images/screen/screen12.gif";
-		pictureScreen13Texture = gl.createTexture();
-        pictureScreen13Texture.image = new Image();
-        pictureScreen13Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen13Texture)
-        }
-		pictureScreen13Texture.image.src = "images/screen/screen13.gif";
-		pictureScreen14Texture = gl.createTexture();
-        pictureScreen14Texture.image = new Image();
-        pictureScreen14Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen14Texture)
-        }
-		pictureScreen14Texture.image.src = "images/screen/screen14.gif";
-		pictureScreen15Texture = gl.createTexture();
-        pictureScreen15Texture.image = new Image();
-        pictureScreen15Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen15Texture)
-        }
-		pictureScreen15Texture.image.src = "images/screen/screen15.gif";
-		pictureScreen16Texture = gl.createTexture();
-        pictureScreen16Texture.image = new Image();
-        pictureScreen16Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen16Texture)
-        }
-		pictureScreen16Texture.image.src = "images/screen/screen16.gif";
-		pictureScreen17Texture = gl.createTexture();
-        pictureScreen17Texture.image = new Image();
-        pictureScreen17Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen17Texture)
-        }
-		pictureScreen17Texture.image.src = "images/screen/screen17.gif";
-		pictureScreen18Texture = gl.createTexture();
-        pictureScreen18Texture.image = new Image();
-        pictureScreen18Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen18Texture)
-        }
-		pictureScreen18Texture.image.src = "images/screen/screen18.gif";
-		pictureScreen19Texture = gl.createTexture();
-        pictureScreen19Texture.image = new Image();
-        pictureScreen19Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen19Texture)
-        }
-		pictureScreen19Texture.image.src = "images/screen/screen19.gif";
-		pictureScreen20Texture = gl.createTexture();
-        pictureScreen20Texture.image = new Image();
-        pictureScreen20Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen20Texture)
-        }
-		pictureScreen20Texture.image.src = "images/screen/screen20.gif";
-		pictureScreen21Texture = gl.createTexture();
-        pictureScreen21Texture.image = new Image();
-        pictureScreen21Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen21Texture)
-        }
-		pictureScreen21Texture.image.src = "images/screen/screen21.gif";
-		pictureScreen22Texture = gl.createTexture();
-        pictureScreen22Texture.image = new Image();
-        pictureScreen22Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen22Texture)
-        }
-		pictureScreen22Texture.image.src = "images/screen/screen22.gif";
-		pictureScreen23Texture = gl.createTexture();
-        pictureScreen23Texture.image = new Image();
-        pictureScreen23Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen23Texture)
-        }
-		pictureScreen23Texture.image.src = "images/screen/screen23.gif";
-		pictureScreen24Texture = gl.createTexture();
-        pictureScreen24Texture.image = new Image();
-        pictureScreen24Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen24Texture)
-        }
-		pictureScreen24Texture.image.src = "images/screen/screen24.gif";
-		pictureScreen25Texture = gl.createTexture();
-        pictureScreen25Texture.image = new Image();
-        pictureScreen25Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen25Texture)
-        }
-		pictureScreen25Texture.image.src = "images/screen/screen25.gif";
-		pictureScreen26Texture = gl.createTexture();
-        pictureScreen26Texture.image = new Image();
-        pictureScreen26Texture.image.onload = function () {
-            handleLoadedTexture(pictureScreen26Texture)
-        }
-		pictureScreen26Texture.image.src = "images/screen/screen26.gif";
-		// generic holder
-		pictureScreenTexture = pictureScreen1Texture;
-		// panels
-		picturePanel1Texture = gl.createTexture();
-        picturePanel1Texture.image = new Image();
-        picturePanel1Texture.image.onload = function () {
-            handleLoadedTexture(picturePanel1Texture)
-        }
-		picturePanel1Texture.image.src = "images/textpanels/panel1_512.gif";
-		picturePanel2Texture = gl.createTexture();
-        picturePanel2Texture.image = new Image();
-        picturePanel2Texture.image.onload = function () {
-            handleLoadedTexture(picturePanel2Texture)
-        }
-		picturePanel2Texture.image.src = "images/textpanels/panel2_512.gif";
-		picturePanel3Texture = gl.createTexture();
-        picturePanel3Texture.image = new Image();
-        picturePanel3Texture.image.onload = function () {
-            handleLoadedTexture(picturePanel3Texture)
-        }
-		picturePanel3Texture.image.src = "images/textpanels/panel3_512.gif";
-		picturePanel4Texture = gl.createTexture();
-        picturePanel4Texture.image = new Image();
-        picturePanel4Texture.image.onload = function () {
-            handleLoadedTexture(picturePanel4Texture)
-        }
-		picturePanel4Texture.image.src = "images/textpanels/panel4_512.gif";
+        highlighterTextures[highlighterWallTextureSubscript].image.src = "images/highlighterLayout/wallHi.png";
     }
-	
-	
 	
 
     var mvMatrix = mat4.create();
@@ -636,17 +241,29 @@
     var yaw = 180;
     var yawRate = 0;
 
-    var xPos = 0;
+    var xPos = 16;
     var yPos = standingHeight;
-    var zPos = -30;
+    var zPos = 31;
 
     var speed = 0;
-	var maxSpeed = 0.002;
+	var maxSpeed = 0.008;
 	
 	var	strafe = 0;
-	var maxStrafe = 0.001;
+	var maxStrafe = 0.006;
 
     function handleKeys() {
+		if( currentlyPressedKeys[16]) {
+			// q
+			// toggle wall on or off
+			if( !highlighterIsOn ) {
+				moveHighlighter( 1, 1, 1 );
+				highlighterIsOn = true;
+			} else {
+				highlighterIsOn = false;
+			}
+			currentlyPressedKeys[16] = false;
+		}
+	
         if (currentlyPressedKeys[33]) {
             // Page Up
             pitchRate = 0.1;
@@ -689,2123 +306,230 @@
 
     }
 
-
-    var worldFloorVertexPositionBuffer = null;
-    var worldFloorVertexTextureCoordBuffer = null;
+	var buildingLayoutVertexPositionBuffer = [];
+	var buildingLayoutVertexTextureCoordBuffer = [];
+	var buildingLayoutTextureNumber = [];
 	
-	var worldWallsVertexPositionBuffer = null;
-    var worldWallsVertexTextureCoordBuffer = null;
+	var highlighterVertexPositionBuffer;
+	var highlighterTextureCoordBuffer;
+	var highlighterTextureNumber;
+	var highlighterIsOn = false;
 	
-	var worldCeilingVertexPositionBuffer = null;
-    var worldCeilingVertexTextureCoordBuffer = null;
+	var artworksVertexPositionBuffer = [];
+	var artworksTextureCoordBuffer = [];
+	var artworksTextureNumber = [];
 	
-	var picture1VertexPositionBuffer = null;
-    var picture1VertexTextureCoordBuffer = null;
-	var picture2VertexPositionBuffer = null;
-    var picture2VertexTextureCoordBuffer = null;
-	var picture3VertexPositionBuffer = null;
-    var picture3VertexTextureCoordBuffer = null;
-	var picture4VertexPositionBuffer = null;
-    var picture4VertexTextureCoordBuffer = null;
-	var picture5VertexPositionBuffer = null;
-    var picture5VertexTextureCoordBuffer = null;
-	var picture6VertexPositionBuffer = null;
-    var picture6VertexTextureCoordBuffer = null;
-	var picture7VertexPositionBuffer = null;
-    var picture7VertexTextureCoordBuffer = null;
-	var picture8VertexPositionBuffer = null;
-    var picture8VertexTextureCoordBuffer = null;
-	var picture9VertexPositionBuffer = null;
-    var picture9VertexTextureCoordBuffer = null;
-	var picture10VertexPositionBuffer = null;
-    var picture10VertexTextureCoordBuffer = null;
-	var picture11VertexPositionBuffer = null;
-    var picture11VertexTextureCoordBuffer = null;
-	var picture12VertexPositionBuffer = null;
-    var picture12VertexTextureCoordBuffer = null;
-	var picture13VertexPositionBuffer = null;
-    var picture13VertexTextureCoordBuffer = null;
-	var picture14VertexPositionBuffer = null;
-    var picture14VertexTextureCoordBuffer = null;
-	var picture15VertexPositionBuffer = null;
-    var picture15VertexTextureCoordBuffer = null;
-	var picture16VertexPositionBuffer = null;
-    var picture16VertexTextureCoordBuffer = null;
-	var picture17VertexPositionBuffer = null;
-    var picture17VertexTextureCoordBuffer = null;
-	var picture18VertexPositionBuffer = null;
-    var picture18VertexTextureCoordBuffer = null;
-	var picture19VertexPositionBuffer = null;
-    var picture19VertexTextureCoordBuffer = null;
-	var picture20VertexPositionBuffer = null;
-    var picture20VertexTextureCoordBuffer = null;
-	var picture21VertexPositionBuffer = null;
-    var picture21VertexTextureCoordBuffer = null;
-	var picture22VertexPositionBuffer = null;
-    var picture22VertexTextureCoordBuffer = null;
-	var picture23VertexPositionBuffer = null;
-    var picture23VertexTextureCoordBuffer = null;
-	var picture24VertexPositionBuffer = null;
-    var picture24VertexTextureCoordBuffer = null;
-	var picture25VertexPositionBuffer = null;
-    var picture25VertexTextureCoordBuffer = null;
-	var picture26VertexPositionBuffer = null;
-    var picture26VertexTextureCoordBuffer = null;
-	var pictureScreenVertexPositionBuffer = null;
-    var pictureScreenVertexTextureCoordBuffer = null;
-	
-	var picturePanel1VertexPositionBuffer = null;
-    var picturePanel1VertexTextureCoordBuffer = null;
-	var picturePanel2VertexPositionBuffer = null;
-    var picturePanel2VertexTextureCoordBuffer = null;
-	var picturePanel3VertexPositionBuffer = null;
-    var picturePanel3VertexTextureCoordBuffer = null;
-	var picturePanel4VertexPositionBuffer = null;
-    var picturePanel4VertexTextureCoordBuffer = null;
-	
-
-    function handleLoadedWorldFloor(data) {
-        var lines = data.split("\n");
-        var vertexCount = 0;
-        var vertexPositions = [];
-        var vertexTextureCoords = [];
-        for (var i in lines) {
-            var vals = lines[i].replace(/^\s+/, "").split(/\s+/);
-            if (vals.length == 5 && vals[0] != "//") {
-                // It is a line describing a vertex; get X, Y and Z first
-                vertexPositions.push(parseFloat(vals[0]));
-                vertexPositions.push(parseFloat(vals[1]));
-                vertexPositions.push(parseFloat(vals[2]));
-
-                // And then the texture coords
-                vertexTextureCoords.push(parseFloat(vals[3]));
-                vertexTextureCoords.push(parseFloat(vals[4]));
-
-                vertexCount += 1;
-            }
-        }
-
-        worldFloorVertexPositionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldFloorVertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-        worldFloorVertexPositionBuffer.itemSize = 3;
-        worldFloorVertexPositionBuffer.numItems = vertexCount;
-
-        worldFloorVertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldFloorVertexTextureCoordBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        worldFloorVertexTextureCoordBuffer.itemSize = 2;
-        worldFloorVertexTextureCoordBuffer.numItems = vertexCount;
-    }
-	
-	function handleLoadedWorldWalls(data) {
-        var lines = data.split("\n");
-        var vertexCount = 0;
-        var vertexPositions = [];
-        var vertexTextureCoords = [];
-        for (var i in lines) {
-            var vals = lines[i].replace(/^\s+/, "").split(/\s+/);
-            if (vals.length == 5 && vals[0] != "//") {
-                // It is a line describing a vertex; get X, Y and Z first
-                vertexPositions.push(parseFloat(vals[0]));
-                vertexPositions.push(parseFloat(vals[1]));
-                vertexPositions.push(parseFloat(vals[2]));
-
-                // And then the texture coords
-                vertexTextureCoords.push(parseFloat(vals[3]));
-                vertexTextureCoords.push(parseFloat(vals[4]));
-
-                vertexCount += 1;
-            }
-        }
-
-        worldWallsVertexPositionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldWallsVertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-        worldWallsVertexPositionBuffer.itemSize = 3;
-        worldWallsVertexPositionBuffer.numItems = vertexCount;
-
-        worldWallsVertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldWallsVertexTextureCoordBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        worldWallsVertexTextureCoordBuffer.itemSize = 2;
-        worldWallsVertexTextureCoordBuffer.numItems = vertexCount;
-    }
-	
-	function handleLoadedWorldCeiling(data) {
-        var lines = data.split("\n");
-        var vertexCount = 0;
-        var vertexPositions = [];
-        var vertexTextureCoords = [];
-        for (var i in lines) {
-            var vals = lines[i].replace(/^\s+/, "").split(/\s+/);
-            if (vals.length == 5 && vals[0] != "//") {
-                // It is a line describing a vertex; get X, Y and Z first
-                vertexPositions.push(parseFloat(vals[0]));
-                vertexPositions.push(parseFloat(vals[1]));
-                vertexPositions.push(parseFloat(vals[2]));
-
-                // And then the texture coords
-                vertexTextureCoords.push(parseFloat(vals[3]));
-                vertexTextureCoords.push(parseFloat(vals[4]));
-
-                vertexCount += 1;
-            }
-        }
-
-        worldCeilingVertexPositionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldCeilingVertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-        worldCeilingVertexPositionBuffer.itemSize = 3;
-        worldCeilingVertexPositionBuffer.numItems = vertexCount;
-
-        worldCeilingVertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldCeilingVertexTextureCoordBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        worldCeilingVertexTextureCoordBuffer.itemSize = 2;
-        worldCeilingVertexTextureCoordBuffer.numItems = vertexCount;
-    }
+	var buildingLayoutVertexCount = 0;
 	
 	
-	function handleLoadedPicturesHardcoded() {
-		// Picture 1 - Portrate
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 3;
-		vals[1] = 4.5;
-		vals[2] = -21.1;
-		vals[3] = 1;
-		vals[4] = 1.93;
-		vals[5] = -21.1;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture1VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture1VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture1VertexPositionBuffer.itemSize = 3;
-        picture1VertexPositionBuffer.numItems = 6;
-
-		picture1VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture1VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture1VertexTextureCoordBuffer.itemSize = 2;
-		picture1VertexTextureCoordBuffer.numItems = 6;
+	var vertexFactorMap = [ [ 0.0, 0.0, 0.0, 1.0 ],
+							[ 0.0, 1.0, 0.0, 0.0 ],
+							[ 1.0, 1.0, 1.0, 0.0 ],
+							[ 0.0, 0.0, 0.0, 1.0 ],
+							[ 1.0, 0.0, 1.0, 1.0 ],
+							[ 1.0, 1.0, 1.0, 0.0 ] ];
+	
+	
+	var floorAndCeilingTextureTileFactor = 1.0;
 		
-		// Picture 2 - Portrate
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -1;
-		vals[1] = 4.5;
-		vals[2] = -21.1;
-		vals[3] = -2.9;
-		vals[4] = 1.53;
-		vals[5] = -21.1;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture2VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture2VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture2VertexPositionBuffer.itemSize = 3;
-        picture2VertexPositionBuffer.numItems = 6;
-
-		picture2VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture2VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture2VertexTextureCoordBuffer.itemSize = 2;
-		picture2VertexTextureCoordBuffer.numItems = 6;
+	function buildFloorAndCeiling() {
+		var floorVertexPositions = [];
+		var floorVertexTextureCoords = [];
+		var floorVertexCount = 0;
+		var ceilingVertexPositions = [];
+		var ceilingVertexTextureCoords = [];
+		var ceilingVertexCount = 0;
+		for( var j = 0 ; j < mapHeight ; j++ ) {
+			for( var i = 0 ; i < mapWidth ; i++ ) {
+				if( cubeMap[j][i] == 1 ) {
+					// FLOOR
+					for( var k = 0 ; k < 6 ; k++ ){
+						pushVertexToArrays( floorVertexPositions, floorVertexTextureCoords,
+											(i * wallWidth) + (wallWidth * vertexFactorMap[k][0] ),
+											0.0,
+											(j * wallWidth) + (wallWidth * vertexFactorMap[k][1] ),
+											floorAndCeilingTextureTileFactor * vertexFactorMap[k][2],
+											floorAndCeilingTextureTileFactor * vertexFactorMap[k][3] );
+					}
+					floorVertexCount += 6;
+					
+					// CEILILNG
+					for( var k = 0 ; k < 6 ; k++ ){
+						pushVertexToArrays( ceilingVertexPositions, ceilingVertexTextureCoords,
+											(i * wallWidth) + (wallWidth * vertexFactorMap[k][0] ),
+											ceilingHeight,
+											(j * wallWidth) + (wallWidth * vertexFactorMap[k][1] ),
+											floorAndCeilingTextureTileFactor * vertexFactorMap[k][2],
+											floorAndCeilingTextureTileFactor * vertexFactorMap[k][3] );
+					}
+					ceilingVertexCount += 6;
+				}
+			}
+		}
 		
-		// Picture 3 - Landscape
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 5.0;
-		vals[1] = 4.3;
-		vals[2] = -29.9;
-		vals[3] = 8.0;
-		vals[4] = 2.1;
-		vals[5] = -29.9;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture3VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture3VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture3VertexPositionBuffer.itemSize = 3;
-        picture3VertexPositionBuffer.numItems = 6;
+		// push floors to GL arrays
+		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(floorVertexPositions), gl.STATIC_DRAW);
+        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].itemSize = 3;
+        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].numItems = floorVertexCount;
 
-		picture3VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture3VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture3VertexTextureCoordBuffer.itemSize = 2;
-		picture3VertexTextureCoordBuffer.numItems = 6;
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(floorVertexTextureCoords), gl.STATIC_DRAW);
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].itemSize = 2;
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].numItems = floorVertexCount;
 		
-		// Picture 4 - Portrate
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 9.9;
-		vals[1] = 4.5;
-		vals[2] = -29;
-		vals[3] = 9.9;
-		vals[4] = 1.74;
-		vals[5] = -27;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture4VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture4VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture4VertexPositionBuffer.itemSize = 3;
-        picture4VertexPositionBuffer.numItems = 6;
-
-		picture4VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture4VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture4VertexTextureCoordBuffer.itemSize = 2;
-		picture4VertexTextureCoordBuffer.numItems = 6;
+		buildingLayoutTextureNumber[buildingLayoutVertexCount] = floorTextureSubscript;
+		buildingLayoutVertexCount++;
 		
-		// Picture 5
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 9.9;
-		vals[1] = 4.3;
-		vals[2] = -26;
-		vals[3] = 9.9;
-		vals[4] = 2.61;
-		vals[5] = -23.5;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture5VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture5VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture5VertexPositionBuffer.itemSize = 3;
-        picture5VertexPositionBuffer.numItems = 6;
+		// push ceilings to GL arrays
+		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(ceilingVertexPositions), gl.STATIC_DRAW);
+        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].itemSize = 3;
+        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].numItems = ceilingVertexCount;
 
-		picture5VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture5VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture5VertexTextureCoordBuffer.itemSize = 2;
-		picture5VertexTextureCoordBuffer.numItems = 6;
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(ceilingVertexTextureCoords), gl.STATIC_DRAW);
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].itemSize = 2;
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].numItems = ceilingVertexCount;
 		
-		// Picture 6
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 9.9;
-		vals[1] = 4.5;
-		vals[2] = -22;
-		vals[3] = 9.9;
-		vals[4] = 1.83;
-		vals[5] = -20;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture6VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture6VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture6VertexPositionBuffer.itemSize = 3;
-        picture6VertexPositionBuffer.numItems = 6;
-
-		picture6VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture6VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture6VertexTextureCoordBuffer.itemSize = 2;
-		picture6VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 7
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -9.9;
-		vals[1] = 4.5;
-		vals[2] = -22;
-		vals[3] = -9.9;
-		vals[4] = 1.63;
-		vals[5] = -24;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture7VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture7VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture7VertexPositionBuffer.itemSize = 3;
-        picture7VertexPositionBuffer.numItems = 6;
-
-		picture7VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture7VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture7VertexTextureCoordBuffer.itemSize = 2;
-		picture7VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 8
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -9.9;
-		vals[1] = 4.3;
-		vals[2] = -25.5;
-		vals[3] = -9.9;
-		vals[4] = 2.53;
-		vals[5] = -28;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture8VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture8VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture8VertexPositionBuffer.itemSize = 3;
-        picture8VertexPositionBuffer.numItems = 6;
-
-		picture8VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture8VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture8VertexTextureCoordBuffer.itemSize = 2;
-		picture8VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 9
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 7;
-		vals[1] = 4.5;
-		vals[2] = -11.1;
-		vals[3] = 5;
-		vals[4] = 1.95;
-		vals[5] = -11.1;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture9VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture9VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture9VertexPositionBuffer.itemSize = 3;
-        picture9VertexPositionBuffer.numItems = 6;
-
-		picture9VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture9VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture9VertexTextureCoordBuffer.itemSize = 2;
-		picture9VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 10
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 4;
-		vals[1] = 4.5;
-		vals[2] = -11.1;
-		vals[3] = 2;
-		vals[4] = 1.72;
-		vals[5] = -11.1;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture10VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture10VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture10VertexPositionBuffer.itemSize = 3;
-        picture10VertexPositionBuffer.numItems = 6;
-
-		picture10VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture10VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture10VertexTextureCoordBuffer.itemSize = 2;
-		picture10VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 11
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -9.9;
-		vals[1] = 4.5;
-		vals[2] = -11;
-		vals[3] = -9.9;
-		vals[4] = 1.67;
-		vals[5] = -13;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture11VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture11VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture11VertexPositionBuffer.itemSize = 3;
-        picture11VertexPositionBuffer.numItems = 6;
-
-		picture11VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture11VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture11VertexTextureCoordBuffer.itemSize = 2;
-		picture11VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 12
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -9.9;
-		vals[1] = 4.7;
-		vals[2] = -14;
-		vals[3] = -9.9;
-		vals[4] = 1.45;
-		vals[5] = -16;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture12VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture12VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture12VertexPositionBuffer.itemSize = 3;
-        picture12VertexPositionBuffer.numItems = 6;
-
-		picture12VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture12VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture12VertexTextureCoordBuffer.itemSize = 2;
-		picture12VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 13
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -9.9;
-		vals[1] = 4.5;
-		vals[2] = -17;
-		vals[3] = -9.9;
-		vals[4] = 1.72;
-		vals[5] = -19;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture13VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture13VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture13VertexPositionBuffer.itemSize = 3;
-        picture13VertexPositionBuffer.numItems = 6;
-
-		picture13VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture13VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture13VertexTextureCoordBuffer.itemSize = 2;
-		picture13VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 14
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 9.9;
-		vals[1] = 4.5;
-		vals[2] = -17;
-		vals[3] = 9.9;
-		vals[4] = 2.12;
-		vals[5] = -13;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture14VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture14VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture14VertexPositionBuffer.itemSize = 3;
-        picture14VertexPositionBuffer.numItems = 6;
-
-		picture14VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture14VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture14VertexTextureCoordBuffer.itemSize = 2;
-		picture14VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 15
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -3.4;
-		vals[1] = 4.5;
-		vals[2] = -19.9;
-		vals[3] = -1.5;
-		vals[4] = 1.99;
-		vals[5] = -19.9;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture15VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture15VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture15VertexPositionBuffer.itemSize = 3;
-        picture15VertexPositionBuffer.numItems = 6;
-
-		picture15VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture15VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture15VertexTextureCoordBuffer.itemSize = 2;
-		picture15VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 16
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 1.5;
-		vals[1] = 4.5;
-		vals[2] = -19.9;
-		vals[3] = 3.4;
-		vals[4] = 1.57;
-		vals[5] = -19.9;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture16VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture16VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture16VertexPositionBuffer.itemSize = 3;
-        picture16VertexPositionBuffer.numItems = 6;
-
-		picture16VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture16VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture16VertexTextureCoordBuffer.itemSize = 2;
-		picture16VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 17
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -9.9;
-		vals[1] = 4.5;
-		vals[2] = -6;
-		vals[3] = -9.9;
-		vals[4] = 1.95;
-		vals[5] = -8;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture17VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture17VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture17VertexPositionBuffer.itemSize = 3;
-        picture17VertexPositionBuffer.numItems = 6;
-
-		picture17VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture17VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture17VertexTextureCoordBuffer.itemSize = 2;
-		picture17VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 18
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 2;
-		vals[1] = 4.5;
-		vals[2] = -9.9;
-		vals[3] = 4;
-		vals[4] = 1.62;
-		vals[5] = -9.9;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture18VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture18VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture18VertexPositionBuffer.itemSize = 3;
-        picture18VertexPositionBuffer.numItems = 6;
-
-		picture18VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture18VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture18VertexTextureCoordBuffer.itemSize = 2;
-		picture18VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 19
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 6;
-		vals[1] = 4.5;
-		vals[2] = -9.9;
-		vals[3] = 8;
-		vals[4] = 1.93;
-		vals[5] = -9.9;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture19VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture19VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture19VertexPositionBuffer.itemSize = 3;
-        picture19VertexPositionBuffer.numItems = 6;
-
-		picture19VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture19VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture19VertexTextureCoordBuffer.itemSize = 2;
-		picture19VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 20
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 9.9;
-		vals[1] = 4.5;
-		vals[2] = -7;
-		vals[3] = 9.9;
-		vals[4] = 2.08;
-		vals[5] = -3;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture20VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture20VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture20VertexPositionBuffer.itemSize = 3;
-        picture20VertexPositionBuffer.numItems = 6;
-
-		picture20VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture20VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture20VertexTextureCoordBuffer.itemSize = 2;
-		picture20VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 21
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 8;
-		vals[1] = 4.5;
-		vals[2] = -0.1;
-		vals[3] = 6;
-		vals[4] = 1.58;
-		vals[5] = -0.1;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture21VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture21VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture21VertexPositionBuffer.itemSize = 3;
-        picture21VertexPositionBuffer.numItems = 6;
-
-		picture21VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture21VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture21VertexTextureCoordBuffer.itemSize = 2;
-		picture21VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 22
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 4;
-		vals[1] = 4.7;
-		vals[2] = -0.1;
-		vals[3] = 2;
-		vals[4] = 1.64;
-		vals[5] = -0.1;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture22VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture22VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture22VertexPositionBuffer.itemSize = 3;
-        picture22VertexPositionBuffer.numItems = 6;
-
-		picture22VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture22VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture22VertexTextureCoordBuffer.itemSize = 2;
-		picture22VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 23
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -0.1;
-		vals[1] = 4.5;
-		vals[2] = 0.5;
-		vals[3] = -0.1;
-		vals[4] = 2.44;
-		vals[5] = 2;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture23VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture23VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture23VertexPositionBuffer.itemSize = 3;
-        picture23VertexPositionBuffer.numItems = 6;
-
-		picture23VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture23VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture23VertexTextureCoordBuffer.itemSize = 2;
-		picture23VertexTextureCoordBuffer.numItems = 6;
-		// Picture 24
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -0.1;
-		vals[1] = 4.5;
-		vals[2] = 3;
-		vals[3] = -0.1;
-		vals[4] = 2.42;
-		vals[5] = 4.5;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture24VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture24VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture24VertexPositionBuffer.itemSize = 3;
-        picture24VertexPositionBuffer.numItems = 6;
-
-		picture24VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture24VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture24VertexTextureCoordBuffer.itemSize = 2;
-		picture24VertexTextureCoordBuffer.numItems = 6;
-		
-		// Picture 25
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -0.1;
-		vals[1] = 4.5;
-		vals[2] = 5.5;
-		vals[3] = -0.1;
-		vals[4] = 2.27;
-		vals[5] = 7;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture25VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture25VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture25VertexPositionBuffer.itemSize = 3;
-        picture25VertexPositionBuffer.numItems = 6;
-
-		picture25VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture25VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture25VertexTextureCoordBuffer.itemSize = 2;
-		picture25VertexTextureCoordBuffer.numItems = 6;
-		// Picture 26
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -0.1;
-		vals[1] = 4.5;
-		vals[2] = 8;
-		vals[3] = -0.1;
-		vals[4] = 2.69;
-		vals[5] = 9.5;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picture26VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture26VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picture26VertexPositionBuffer.itemSize = 3;
-        picture26VertexPositionBuffer.numItems = 6;
-
-		picture26VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture26VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picture26VertexTextureCoordBuffer.itemSize = 2;
-		picture26VertexTextureCoordBuffer.numItems = 6;
-		
-		
-		
-		// Picture Screen
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -3.0;
-		vals[1] = 4.5;
-		vals[2] = 9.9;
-		vals[3] = -7.0;
-		vals[4] = 0.5;
-		vals[5] = 9.9;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		pictureScreenVertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, pictureScreenVertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		pictureScreenVertexPositionBuffer.itemSize = 3;
-        pictureScreenVertexPositionBuffer.numItems = 6;
-
-		pictureScreenVertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, pictureScreenVertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        pictureScreenVertexTextureCoordBuffer.itemSize = 2;
-		pictureScreenVertexTextureCoordBuffer.numItems = 6;
-		
-		
-		// Text Panel 1
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -8.5;
-		vals[1] = 4.5;
-		vals[2] = -29.9;
-		vals[3] = -4.5;
-		vals[4] = 0.5;
-		vals[5] = -29.9;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picturePanel1VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel1VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picturePanel1VertexPositionBuffer.itemSize = 3;
-        picturePanel1VertexPositionBuffer.numItems = 6;
-
-		picturePanel1VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel1VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picturePanel1VertexTextureCoordBuffer.itemSize = 2;
-		picturePanel1VertexTextureCoordBuffer.numItems = 6;
-		
-		// Text Panel 2
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = 0.5;
-		vals[1] = 4.5;
-		vals[2] = -11.1;
-		vals[3] = -3.5;
-		vals[4] = 0.5;
-		vals[5] = -11.1;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picturePanel2VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel2VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picturePanel2VertexPositionBuffer.itemSize = 3;
-        picturePanel2VertexPositionBuffer.numItems = 6;
-
-		picturePanel2VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel2VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picturePanel2VertexTextureCoordBuffer.itemSize = 2;
-		picturePanel2VertexTextureCoordBuffer.numItems = 6;
-		
-		// Text Panel 3
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -3.5;
-		vals[1] = 4.5;
-		vals[2] = -9.9;
-		vals[3] = 0.5;
-		vals[4] = 0.5;
-		vals[5] = -9.9;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picturePanel3VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel3VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picturePanel3VertexPositionBuffer.itemSize = 3;
-        picturePanel3VertexPositionBuffer.numItems = 6;
-
-		picturePanel3VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel3VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picturePanel3VertexTextureCoordBuffer.itemSize = 2;
-		picturePanel3VertexTextureCoordBuffer.numItems = 6;
-		
-		// Text Panel 4
-		var vertexPositions = [];
-        var vertexTextureCoords = [];
-		var vals = [];
-		vals[0] = -9.9;
-		vals[1] = 4.5;
-		vals[2] = 0;
-		vals[3] = -9.9;
-		vals[4] = 0.5;
-		vals[5] = -4;
-				
-		// First triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(1.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		// Second triangle
-		vertexPositions.push(vals[0]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[2]);
-		vertexTextureCoords.push(0.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[4]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(0.0);
-				
-		vertexPositions.push(vals[3]);
-		vertexPositions.push(vals[1]);
-		vertexPositions.push(vals[5]);
-		vertexTextureCoords.push(1.0);
-        vertexTextureCoords.push(1.0);
-				
-		picturePanel4VertexPositionBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel4VertexPositionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
-		picturePanel4VertexPositionBuffer.itemSize = 3;
-        picturePanel4VertexPositionBuffer.numItems = 6;
-
-		picturePanel4VertexTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel4VertexTextureCoordBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        picturePanel4VertexTextureCoordBuffer.itemSize = 2;
-		picturePanel4VertexTextureCoordBuffer.numItems = 6;
-
+		buildingLayoutTextureNumber[buildingLayoutVertexCount] = ceilingTextureSubscript;
+		buildingLayoutVertexCount++;
 	}
+	
+	
+	var wallTextureTileFactor = 1.0;
+	
+	function buildWalls() {
+		var horizontalVertexPositions = [];
+		var horizontalVertexTextureCoords = [];
+		var horizontalVertexCount = 0;
+		for( var i = 0 ; i < mapWidth ; i++ ) {
+			var lastMapValue = cubeMap[0][i];
+			for( var j = 1 ; j < mapHeight ; j++ ) {
+				if( cubeMap[j][i] != lastMapValue ) {
+					for( var k = 0 ; k < 6 ; k++ ){
+						pushVertexToArrays( horizontalVertexPositions, horizontalVertexTextureCoords,
+											(i * wallWidth) + (wallWidth * vertexFactorMap[k][0] ),
+											(wallWidth * vertexFactorMap[k][1] ),
+											(j * wallWidth),
+											wallTextureTileFactor * vertexFactorMap[k][2],
+											wallTextureTileFactor * vertexFactorMap[k][3] );
+					}
+					horizontalVertexCount += 6;
+				}
+				lastMapValue = cubeMap[j][i];
+			}
+		}
+		// push horizontal walls to GL arrays
+		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(horizontalVertexPositions), gl.STATIC_DRAW);
+        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].itemSize = 3;
+        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].numItems = horizontalVertexCount;
 
-    function loadWorld() {
-        var requestFloor = new XMLHttpRequest();
-        requestFloor.open("GET", "floor.txt");
-        requestFloor.onreadystatechange = function () {
-            if (requestFloor.readyState == 4) {
-                handleLoadedWorldFloor(requestFloor.responseText);
-            }
-        }
-        requestFloor.send();
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(horizontalVertexTextureCoords), gl.STATIC_DRAW);
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].itemSize = 2;
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].numItems = horizontalVertexCount;
 		
-		var requestWalls = new XMLHttpRequest();
-        requestWalls.open("GET", "walls.txt");
-        requestWalls.onreadystatechange = function () {
-            if (requestWalls.readyState == 4) {
-                handleLoadedWorldWalls(requestWalls.responseText);
-            }
-        }
-        requestWalls.send();
+		buildingLayoutTextureNumber[buildingLayoutVertexCount] = wallTextureSubscript;
+		buildingLayoutVertexCount++;
 		
-		var requestCeiling = new XMLHttpRequest();
-        requestCeiling.open("GET", "ceiling.txt");
-        requestCeiling.onreadystatechange = function () {
-            if (requestCeiling.readyState == 4) {
-                handleLoadedWorldCeiling(requestCeiling.responseText);
-            }
-        }
-        requestCeiling.send();
+		// vertical walls
+		var verticalVertexPositions = [];
+		var verticalVertexTextureCoords = [];
+		var verticalVertexCount = 0;
+		for( var j = 0 ; j < mapHeight ; j++ ) {
+			var lastMapValue = cubeMap[j][0];
+			for( var i = 1 ; i < mapWidth ; i++ ) {
+				if( cubeMap[j][i] != lastMapValue ) {
+					for( var k = 0 ; k < 6 ; k++ ){
+						pushVertexToArrays( verticalVertexPositions, verticalVertexTextureCoords,
+											(i * wallWidth),
+											(wallWidth * vertexFactorMap[k][1] ),
+											(j * wallWidth) + (wallWidth * vertexFactorMap[k][0] ),
+											wallTextureTileFactor * vertexFactorMap[k][2],
+											wallTextureTileFactor * vertexFactorMap[k][3] );
+					}
+					verticalVertexCount += 6;
+				}
+				lastMapValue = cubeMap[j][i];
+			}
+		}
+		// push vertical walls to GL arrays
+		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticalVertexPositions), gl.STATIC_DRAW);
+        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].itemSize = 3;
+        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].numItems = verticalVertexCount;
+
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticalVertexTextureCoords), gl.STATIC_DRAW);
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].itemSize = 2;
+        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].numItems = verticalVertexCount;
 		
-		handleLoadedPicturesHardcoded();
+		buildingLayoutTextureNumber[buildingLayoutVertexCount] = wallTextureSubscript;
+		buildingLayoutVertexCount++;
+	}
+	
+	function createHighlighter() {
+		var vertexPositions = [];
+		var vertexTextureCoords = [];
+		// fill with empty values for now, will be filled with values when turned on by picker
+		for( var i = 0 ; i < 6 ; i++ ) {
+			pushVertexToArrays( vertexPositions, vertexTextureCoords, 0, 0, 0, 0, 0 );
+		}
+		var vertexCount = 6;
+		
+		// push vertical walls to GL arrays
+		highlighterVertexPositionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, highlighterVertexPositionBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.DYNAMIC_DRAW);
+        highlighterVertexPositionBuffer.itemSize = 3;
+        highlighterVertexPositionBuffer.numItems = vertexCount;
+
+        highlighterTextureCoordBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, highlighterTextureCoordBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
+        highlighterTextureCoordBuffer.itemSize = 2;
+        highlighterTextureCoordBuffer.numItems = vertexCount;
+		
+		highlighterTextureNumber = wallTextureSubscript;
+	}
+	
+	function pushVertexToArrays( spacialCoords, textureCoords, x, y, z, u, v ) {
+		spacialCoords.push(x);
+		spacialCoords.push(y);
+		spacialCoords.push(z);
+		textureCoords.push(u);
+		textureCoords.push(v);
+	}
+	
+	var numberOfLoadedFiles = 0;
+
+	
+    function loadWorld() {		
+		buildFloorAndCeiling();
+		buildWalls();
+		createHighlighter();
 		
         document.getElementById("loadingtext").textContent = "";
     }
 
-
-
+	
     function drawScene() {
         gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        if (worldFloorVertexTextureCoordBuffer == null || worldFloorVertexPositionBuffer == null || 
-			worldWallsVertexTextureCoordBuffer == null || worldWallsVertexPositionBuffer == null ||
-			worldCeilingVertexTextureCoordBuffer == null || worldCeilingVertexPositionBuffer == null ) {
+		if (buildingLayoutVertexTextureCoordBuffer == null || buildingLayoutVertexPositionBuffer == null ) {
             return;
-        }
+		}
 
         mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
 
@@ -2815,365 +539,42 @@
         mat4.rotate(mvMatrix, degToRad(-yaw), [0, 1, 0]);
         mat4.translate(mvMatrix, [-xPos, -yPos, -zPos]);
 		
-		// Draw floor
-        gl.activeTexture(gl.TEXTURE0);
-        gl.bindTexture(gl.TEXTURE_2D, floorTexture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
+		// Draw building layout
+		for( var i = 0 ; i < buildingLayoutVertexCount ; i++ ) {
+			gl.activeTexture(gl.TEXTURE0 + i);
+			gl.bindTexture(gl.TEXTURE_2D, buildingTextures[buildingLayoutTextureNumber[i]]);
+			//gl.bindTexture(gl.TEXTURE_2D, buildingTextures[0]);
+			gl.uniform1i(shaderProgram.samplerUniform, i);
 
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldFloorVertexTextureCoordBuffer);
-        gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, worldFloorVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+			gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[i]);
+			gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, buildingLayoutVertexTextureCoordBuffer[i].itemSize, gl.FLOAT, false, 0, 0);
 
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldFloorVertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, worldFloorVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+			gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[i]);
+			gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, buildingLayoutVertexPositionBuffer[i].itemSize, gl.FLOAT, false, 0, 0);
 
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, worldFloorVertexPositionBuffer.numItems);
-		
-		
-		// Draw walls
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldWallsVertexTextureCoordBuffer);
-        gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, worldWallsVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+			setMatrixUniforms();
+			gl.drawArrays(gl.TRIANGLES, 0, buildingLayoutVertexPositionBuffer[i].numItems);
+		}
+		if( highlighterIsOn ) {
+			gl.activeTexture(gl.TEXTURE0  );
+			gl.bindTexture(gl.TEXTURE_2D, buildingTextures[2]);
+			//gl.bindTexture(gl.TEXTURE_2D, highlighterTextures[highlighterTextureNumber]);
+			gl.uniform1i(shaderProgram.samplerUniform, 0 );
 
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldWallsVertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, worldWallsVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		
-		gl.activeTexture(gl.TEXTURE0);  // experimental! 
-        gl.bindTexture(gl.TEXTURE_2D, wallTexture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
+			gl.bindBuffer(gl.ARRAY_BUFFER, highlighterTextureCoordBuffer);
+			gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, highlighterTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, worldWallsVertexPositionBuffer.numItems);
-		
+			gl.bindBuffer(gl.ARRAY_BUFFER, highlighterVertexPositionBuffer);
+			gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, highlighterVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-		// Draw walls
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldCeilingVertexTextureCoordBuffer);
-        gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, worldCeilingVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-
-        gl.bindBuffer(gl.ARRAY_BUFFER, worldCeilingVertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, worldCeilingVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		
-		gl.activeTexture(gl.TEXTURE0);  // experimental! 
-        gl.bindTexture(gl.TEXTURE_2D, ceilingTexture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, worldCeilingVertexPositionBuffer.numItems);
-		
-		// picture 1
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture1VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture1VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture1VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture1VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture1Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture1VertexPositionBuffer.numItems);
-		// picture 2
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture2VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture2VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture2VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture2VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture2Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture2VertexPositionBuffer.numItems);
-		// picture 3
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture3VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture3VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture3VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture3VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture3Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture3VertexPositionBuffer.numItems);
-		// picture 4
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture4VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture4VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture4VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture4VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture4Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture4VertexPositionBuffer.numItems);
-		// picture 5
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture5VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture5VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture5VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture5VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture5Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture5VertexPositionBuffer.numItems);
-		// picture 6
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture6VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture6VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture6VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture6VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture6Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture6VertexPositionBuffer.numItems);
-		// picture 7
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture7VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture7VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture7VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture7VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture7Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture7VertexPositionBuffer.numItems);
-		// picture 8
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture8VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture8VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture8VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture8VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture8Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture8VertexPositionBuffer.numItems);
-		// picture 9
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture9VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture9VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture9VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture9VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture9Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture9VertexPositionBuffer.numItems);
-		// picture 10
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture10VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture10VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture10VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture10VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture10Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture10VertexPositionBuffer.numItems);
-		// picture 11
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture11VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture11VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture11VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture11VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture11Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture11VertexPositionBuffer.numItems);
-		// picture 12
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture12VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture12VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture12VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture12VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture12Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture12VertexPositionBuffer.numItems);
-		// picture 13
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture13VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture13VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture13VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture13VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture13Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture13VertexPositionBuffer.numItems);
-		// picture 14
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture14VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture14VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture14VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture14VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture14Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture14VertexPositionBuffer.numItems);
-		// picture 15
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture15VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture15VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture15VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture15VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture15Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture15VertexPositionBuffer.numItems);
-		// picture 16
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture16VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture16VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture16VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture16VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture16Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture16VertexPositionBuffer.numItems);
-		// picture 17
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture17VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture17VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture17VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture17VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture17Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture17VertexPositionBuffer.numItems);
-		// picture 18
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture18VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture18VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture18VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture18VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture18Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture18VertexPositionBuffer.numItems);
-		// picture 19
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture19VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture19VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture19VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture19VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture19Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture19VertexPositionBuffer.numItems);
-		// picture 20
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture20VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture20VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture20VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture20VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture20Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture20VertexPositionBuffer.numItems);
-		// picture 21
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture21VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture21VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture21VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture21VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture21Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture21VertexPositionBuffer.numItems);
-		// picture 22
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture22VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture22VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture22VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture22VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture22Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture22VertexPositionBuffer.numItems);
-		// picture 23
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture23VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture23VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture23VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture23VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture23Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture23VertexPositionBuffer.numItems);
-		// picture 24
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture24VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture24VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture24VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture24VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture24Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture24VertexPositionBuffer.numItems);
-		// picture 25
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture25VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture25VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture25VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture25VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture25Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture25VertexPositionBuffer.numItems);
-		// picture 26
-		gl.bindBuffer(gl.ARRAY_BUFFER, picture26VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picture26VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picture26VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picture26VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picture26Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picture26VertexPositionBuffer.numItems);
-		// picture Screen
-		gl.bindBuffer(gl.ARRAY_BUFFER, pictureScreenVertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, pictureScreenVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, pictureScreenVertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, pictureScreenVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, pictureScreenTexture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, pictureScreenVertexPositionBuffer.numItems);
-		
-		// text panel 1
-		gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel1VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picturePanel1VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel1VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picturePanel1VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picturePanel1Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picturePanel1VertexPositionBuffer.numItems);
-		// text panel 2
-		gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel2VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picturePanel2VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel2VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picturePanel2VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picturePanel2Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picturePanel2VertexPositionBuffer.numItems);
-		// text panel 3
-		gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel3VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picturePanel3VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel3VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picturePanel3VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picturePanel3Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picturePanel3VertexPositionBuffer.numItems);
-		// text panel 4
-		gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel4VertexTextureCoordBuffer);
-	    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, picturePanel4VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, picturePanel4VertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, picturePanel4VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, picturePanel4Texture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, picturePanel4VertexPositionBuffer.numItems);
-
+			setMatrixUniforms();
+			gl.drawArrays(gl.TRIANGLES, 0, highlighterVertexPositionBuffer.numItems);
+		}		
+		// debug info
+		document.getElementById("debugfeedback").textContent = xPos + ", " + yPos + "," + zPos;
         drawClickPos();
     }
-
+	
 
     var lastTime = 0;
     // Used to make us "jog" up and down as we move forward.
@@ -3204,121 +605,16 @@
         lastTime = timeNow;
     }
 	
-	function changeScreen( num ) {
-		switch( num ) {
-			case 1:
-				pictureScreenTexture = pictureScreen1Texture;
-				break;
-			case 2:
-				pictureScreenTexture = pictureScreen2Texture;
-				break;
-			case 3:
-				pictureScreenTexture = pictureScreen3Texture;
-				break;
-			case 4:
-				pictureScreenTexture = pictureScreen4Texture;
-				break;
-			case 5:
-				pictureScreenTexture = pictureScreen5Texture;
-				break;
-			case 6:
-				pictureScreenTexture = pictureScreen6Texture;
-				break;
-			case 7:
-				pictureScreenTexture = pictureScreen7Texture;
-				break;
-			case 8:
-				pictureScreenTexture = pictureScreen8Texture;
-				break;
-			case 9:
-				pictureScreenTexture = pictureScreen9Texture;
-				break;
-			case 10:
-				pictureScreenTexture = pictureScreen10Texture;
-				break;
-			case 11:
-				pictureScreenTexture = pictureScreen11Texture;
-				break;
-			case 12:
-				pictureScreenTexture = pictureScreen12Texture;
-				break;
-			case 13:
-				pictureScreenTexture = pictureScreen13Texture;
-				break;
-			case 14:
-				pictureScreenTexture = pictureScreen14Texture;
-				break;
-			case 15:
-				pictureScreenTexture = pictureScreen15Texture;
-				break;
-			case 16:
-				pictureScreenTexture = pictureScreen16Texture;
-				break;
-			case 17:
-				pictureScreenTexture = pictureScreen17Texture;
-				break;
-			case 18:
-				pictureScreenTexture = pictureScreen18Texture;
-				break;
-			case 19:
-				pictureScreenTexture = pictureScreen19Texture;
-				break;
-			case 20:
-				pictureScreenTexture = pictureScreen20Texture;
-				break;
-			case 21:
-				pictureScreenTexture = pictureScreen21Texture;
-				break;
-			case 22:
-				pictureScreenTexture = pictureScreen22Texture;
-				break;
-			case 23:
-				pictureScreenTexture = pictureScreen23Texture;
-				break;
-			case 24:
-				pictureScreenTexture = pictureScreen24Texture;
-				break;
-			case 25:
-				pictureScreenTexture = pictureScreen25Texture;
-				break;
-			case 26:
-				pictureScreenTexture = pictureScreen26Texture;
-				break;
-			default:
-				pictureScreenTexture = pictureScreen26Texture;
-				break;
-		}
-	}
-	
-	var oldTime = new Date().getTime();
-	var slideShowSpeed = 500;	// one second in miliseconds
-	var slideShowScreen = 1;
-	var maxSlideShowScreen = 26;
-	
-	function animateScreenSlideShow() {
-		var timeNow = new Date().getTime();
-		//document.getElementById("infopanel").textContent = slideShowScreen + " : " + (timeNow-oldTime);
-		if( (timeNow - oldTime) >= slideShowSpeed ) {
-			slideShowScreen = Math.floor(Math.random()*maxSlideShowScreen);
-			if( slideShowScreen > maxSlideShowScreen )
-				slideShowScreen = maxSlideShowScreen;
-			changeScreen(slideShowScreen);
-			oldTime = timeNow;
-		}
-	}
-
-
-    function tick() {
+	function tick() {
         requestAnimFrame(tick);
         handleKeys();
-		animateScreenSlideShow();
-        drawScene();
+	    drawScene();
         animate();
         animate2();
     }
 
 
-
+	
     function webGLStart() {
         var canvas = document.getElementById("lesson10-canvas");
         initGL(canvas);
@@ -3337,6 +633,100 @@
         tick();
     }
 	
+	
+	
+	//-----------------------------------------------------------------
+	
+	
+	function highlightPicker( x, y, z ) {
+		// find 
+		// 
+	}
+	
+	// note: x, y refer to cubeMap[x][y] locations
+	//		if wall, face is n/s/w/e is to 0/1/2/3
+	function moveHighlighter( x, y, face ) {
+		var distanceFromSurface = 0.1;
+		var newVertices = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+			
+		if( cubeMap[y][x] == 1  ) { // i.e. floor
+				highlighterTextureNumber = highlighterFloorTextureSubscript;
+				newVertices = [ (x * wallWidth) + (wallWidth * vertexFactorMap[0][0] ), distanceFromSurface,
+									 (y * wallWidth) + (wallWidth * vertexFactorMap[0][1] ),
+								(x * wallWidth) + (wallWidth * vertexFactorMap[1][0] ), distanceFromSurface,
+									 (y * wallWidth) + (wallWidth * vertexFactorMap[1][1] ),
+								(x * wallWidth) + (wallWidth * vertexFactorMap[2][0] ), distanceFromSurface,
+									 (y * wallWidth) + (wallWidth * vertexFactorMap[2][1] ),
+								(x * wallWidth) + (wallWidth * vertexFactorMap[3][0] ), distanceFromSurface,
+									 (y * wallWidth) + (wallWidth * vertexFactorMap[3][1] ),
+								(x * wallWidth) + (wallWidth * vertexFactorMap[4][0] ), distanceFromSurface,
+									 (y * wallWidth) + (wallWidth * vertexFactorMap[4][1] ),
+								(x * wallWidth) + (wallWidth * vertexFactorMap[5][0] ), distanceFromSurface,
+									 (y * wallWidth) + (wallWidth * vertexFactorMap[5][1] ) ];
+		} else if( cubeMap[y][x] == 0 ) { // wall block
+			highlighterTextureNumber = highlighterWallTextureSubscript;
+			if( face == 0 ) { //north
+				newVertices = [ (x * wallWidth), (wallWidth * vertexFactorMap[0][1] ),
+									(y * wallWidth) + (wallWidth * vertexFactorMap[0][0] ) - distanceFromSurface,
+								(x * wallWidth), (wallWidth * vertexFactorMap[1][1] ),
+									(y * wallWidth) + (wallWidth * vertexFactorMap[1][0] ) - distanceFromSurface,
+								(x * wallWidth), (wallWidth * vertexFactorMap[2][1] ),
+									(y * wallWidth) + (wallWidth * vertexFactorMap[2][0] ) - distanceFromSurface,
+								(x * wallWidth), (wallWidth * vertexFactorMap[3][1] ),
+									(y * wallWidth) + (wallWidth * vertexFactorMap[3][0] ) - distanceFromSurface,
+								(x * wallWidth), (wallWidth * vertexFactorMap[4][1] ),
+									(y * wallWidth) + (wallWidth * vertexFactorMap[4][0] ) - distanceFromSurface,
+								(x * wallWidth), (wallWidth * vertexFactorMap[5][1] ),
+									(y * wallWidth) + (wallWidth * vertexFactorMap[5][0] ) - distanceFromSurface ];
+			} else if( face == 1 ) { //south
+				newVertices = [ (x * wallWidth), (wallWidth * vertexFactorMap[0][1] ),
+									((y-1) * wallWidth) + (wallWidth * vertexFactorMap[0][0] ) + distanceFromSurface,
+								(x * wallWidth), (wallWidth * vertexFactorMap[1][1] ),
+									((y-1) * wallWidth) + (wallWidth * vertexFactorMap[1][0] ) + distanceFromSurface,
+								(x * wallWidth), (wallWidth * vertexFactorMap[2][1] ),
+									((y-1) * wallWidth) + (wallWidth * vertexFactorMap[2][0] ) + distanceFromSurface,
+								(x * wallWidth), (wallWidth * vertexFactorMap[3][1] ),
+									((y-1) * wallWidth) + (wallWidth * vertexFactorMap[3][0] ) + distanceFromSurface,
+								(x * wallWidth), (wallWidth * vertexFactorMap[4][1] ),
+									((y-1) * wallWidth) + (wallWidth * vertexFactorMap[4][0] ) + distanceFromSurface,
+								(x * wallWidth), (wallWidth * vertexFactorMap[5][1] ),
+									((y-1) * wallWidth) + (wallWidth * vertexFactorMap[5][0] ) + distanceFromSurface];
+			} else if( face == 2 ) { //west
+				newVertices = [ (x * wallWidth) + (wallWidth * vertexFactorMap[0][0] ) - distanceFromSurface,
+									(wallWidth * vertexFactorMap[0][1]), (y * wallWidth),
+								(x * wallWidth) + (wallWidth * vertexFactorMap[1][0] ) - distanceFromSurface,
+									(wallWidth * vertexFactorMap[1][1]), (y * wallWidth),
+								(x * wallWidth) + (wallWidth * vertexFactorMap[2][0] ) - distanceFromSurface,
+									(wallWidth * vertexFactorMap[2][1]), (y * wallWidth),
+								(x * wallWidth) + (wallWidth * vertexFactorMap[3][0] ) - distanceFromSurface,
+									(wallWidth * vertexFactorMap[3][1]), (y * wallWidth),
+								(x * wallWidth) + (wallWidth * vertexFactorMap[4][0] ) - distanceFromSurface,
+									(wallWidth * vertexFactorMap[4][1]), (y * wallWidth),
+								(x * wallWidth) + (wallWidth * vertexFactorMap[5][0] ) - distanceFromSurface,
+									(wallWidth * vertexFactorMap[5][1]), (y * wallWidth) ];
+			} else if( face == 3 ) { //east
+				newVertices = [ ((x+1) * wallWidth) + (wallWidth * vertexFactorMap[0][0] ) + distanceFromSurface,
+									(wallWidth * vertexFactorMap[0][1]), (y * wallWidth),
+								((x+1) * wallWidth) + (wallWidth * vertexFactorMap[1][0] ) + distanceFromSurface,
+									(wallWidth * vertexFactorMap[1][1]), (y * wallWidth),
+								((x+1) * wallWidth) + (wallWidth * vertexFactorMap[2][0] ) + distanceFromSurface,
+									(wallWidth * vertexFactorMap[2][1]), (y * wallWidth),
+								((x+1) * wallWidth) + (wallWidth * vertexFactorMap[3][0] ) + distanceFromSurface,
+									(wallWidth * vertexFactorMap[3][1]), (y * wallWidth),
+								((x+1) * wallWidth) + (wallWidth * vertexFactorMap[4][0] ) + distanceFromSurface,
+									(wallWidth * vertexFactorMap[4][1]), (y * wallWidth),
+								((x+1) * wallWidth) + (wallWidth * vertexFactorMap[5][0] ) + distanceFromSurface,
+									(wallWidth * vertexFactorMap[5][1]), (y * wallWidth) ];
+			}
+		}
+		gl.bindBuffer(gl.ARRAY_BUFFER, highlighterVertexPositionBuffer);
+		gl.bufferSubData( gl.ARRAY_BUFFER, 0, new Float32Array(newVertices) );
+		//highlighterIsOn = false;
+	}
+	
+	function toggleHighlighter( val ) {
+		highlighterIsOn = val;
+	}
 
 </script>
 
@@ -3395,13 +785,23 @@
 		font-size:12px;
 		width: 30em;
 	}
+	
+	#debugfeedback {
+		background-color:#FFF;
+		display: block;
+	    margin-left: auto;
+    	margin-right: auto;
+		text-align: center;
+		font-size:20px;
+		width: 30em;
+	}
 </style>
 
 </head>
 
 <body id="bodycss" onLoad="webGLStart();">
-		<p id="heading" class="heading">Visualising Dissent: Posters Against the Wars in Iraq and Vietnam</p>
-    	<p id="heading2" class="heading2">Curated by Candidate 200299</p>
+		<p id="heading" class="heading">Hack4Europe 3D</p>
+    	<p id="heading2" class="heading2">Simon Kenny, Brendan Flynn, Richard Cyganiak, Mark Reilly</p>
 
 	<canvas id="lesson10-canvas" style="border: none;" width="750" height="500"></canvas>
 
@@ -3412,10 +812,11 @@
     <div id="sidepanel">
     	<p id="infopanel">
         	Step forward/back - Up/Down :: Step left/right - A/D :: Look left/right - Left/Right :: Look up/down - PgUp/PgDown
-        	<br/>Programmed by <a href="../index.html">Simon Kenny</a><br/><a href="mailto:simon.a.kenny@gmail.com">simon.a.kenny@gmail.com</a></p>
+        </p>
+		<p id = "debugfeedback">-</p>
         <img id="texturedisplay"/>
     </div>
 
-    <p id="debug">debug</p>
+    <div id="mousepos" style="position: absolute; left: 10px; top: 10px; width: 100px">mousepos</div>
 </body>
 </html>
