@@ -138,11 +138,11 @@ function getMouseHit() {
             var camToGrid = intersectionX - cameraPosition[0];
             var intersectionDist = camToGrid / mouseVector[0];
             var intersectionZ = mouseVector[2] / mouseVector[0] * camToGrid + cameraPosition[2];
-            var intersectionY = mouseVector[2] / mouseVector[1] * camToGrid + cameraPosition[2];
+            var intersectionY = mouseVector[1] / mouseVector[0] * camToGrid + cameraPosition[1];
             var gridZ = toGrid(intersectionZ);
             var localX = intersectionZ - toWorld(gridZ);
             var localY = intersectionY - toWorld(toGrid(intersectionY));
-            if (gridZ < 0 || gridZ > mapHeight) {
+            if (gridZ < 0 || gridZ >= mapHeight) {
                 break;
             }
             if (isWall(gridX + stepX, gridZ)) {
@@ -170,7 +170,7 @@ function getMouseHit() {
             var camToGrid = intersectionZ - cameraPosition[2];
             var intersectionDist = camToGrid / mouseVector[2];
             var intersectionX = mouseVector[0] / mouseVector[2] * camToGrid + cameraPosition[0];
-            var intersectionY = mouseVector[0] / mouseVector[1] * camToGrid + cameraPosition[0];
+            var intersectionY = mouseVector[1] / mouseVector[2] * camToGrid + cameraPosition[1];
             var gridX = toGrid(intersectionX);
             var localX = intersectionX - toWorld(gridX);
             var localY = intersectionY - toWorld(toGrid(intersectionY));
@@ -211,7 +211,7 @@ function getMouseHit() {
         var s = mouseHit[3] + ' wall at (';
     }
     s += mouseHit[1] + ',' + mouseHit[2] + ') with local coords (';
-    s += mouseHit[4] + ',' + mouseHit[5] + '), distance ' + mouseHit[0];
+    s += (Math.round(mouseHit[4] * 10) / 10) + ',' + (Math.round(mouseHit[5] * 10) / 10) + '), distance ' + Math.round(mouseHit[0] * 1000) / 1000;
     document.getElementById('mousepos').childNodes[0].nodeValue = s;
     return mouseHit;
 }
