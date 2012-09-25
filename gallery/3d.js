@@ -1,42 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Europeana 3D Exhibition Builder</title>
-
-<script type="text/javascript" src="gl-matrix-min.js"></script>
-<script type="text/javascript" src="webgl-utils.js"></script>
-<script type="text/javascript" src="interaction.js"></script>
-
-<script id="shader-fs" type="x-shader/x-fragment">
-    precision mediump float;
-
-    varying vec2 vTextureCoord;
-
-    uniform sampler2D uSampler;
-
-    void main(void) {
-        gl_FragColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
-    }
-</script>
-
-<script id="shader-vs" type="x-shader/x-vertex">
-    attribute vec3 aVertexPosition;
-    attribute vec2 aTextureCoord;
-
-    uniform mat4 uMVMatrix;
-    uniform mat4 uPMatrix;
-
-    varying vec2 vTextureCoord;
-
-    void main(void) {
-        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
-        vTextureCoord = aTextureCoord;
-    }
-</script>
-
-
-<script type="text/javascript">
 	// reference by [y][x]
 	var cubeMap = [
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -574,7 +535,7 @@
 	var artworksVertexPositionBuffer = [];
 	var artworksTextureCoordBuffer = [];
 	var artworksTextureNumber = [];
-	
+	/*
 	var artworkDefaultScale = 1.0;
 	var artworkDistanceFromWall = 0.2;
 	function placeArtwork( gridX, gridY, face, localX, localY, artworkURL, artworkWidth, artworkHeight ) {
@@ -669,7 +630,7 @@
 		
 		numArtworks++;
 	}
-
+	*/
 	
 	function pushVertexToArrays( spacialCoords, textureCoords, x, y, z, u, v ) {
 		spacialCoords.push(x);
@@ -913,94 +874,3 @@
 	function toggleHighlighter( val ) {
 		highlighterIsOn = val;
 	}
-
-</script>
-
-<style type="text/css">
-	#bodycss {
-		background-image:url(images/floorbg1.gif);
-		background-repeat:repeat;
-	}
-	
-    #loadingtext {
-       display: block;
-	    margin-left: auto;
-    	margin-right: auto;
-		font-family:Georgia, "Times New Roman", Times, serif;
-        font-size:3em;
-        color: white;
-		text-align: center;
-    }
-	
-	#sidepanel {
-		display: block;
-	    margin-left: auto;
-    	margin-right: auto;
-	}
-	
-	#heading {
-		background-color:#FFF;
-		display: block;
-	    margin-left: auto;
-    	margin-right: auto;
-		font-size:24px;
-		text-align: center
-	}
-	
-	#heading2 {
-		background-color:#FFF;
-		display: block;
-	    margin-left: auto;
-    	margin-right: auto;
-		font-size:18px;
-		text-align: center
-	}
-	
-	#lesson10-canvas {
-		display: block;
-	    margin-left: auto;
-    	margin-right: auto;
-	}
-	
-	#infopanel {
-		background-color:#FFF;
-		display: block;
-	    margin-left: auto;
-    	margin-right: auto;
-		text-align: center;
-		font-size:12px;
-		width: 30em;
-	}
-	
-	#debugfeedback {
-		background-color:#FFF;
-		display: block;
-	    margin-left: auto;
-    	margin-right: auto;
-		text-align: center;
-		font-size:20px;
-		width: 30em;
-	}
-</style>
-
-</head>
-
-<body id="bodycss" onLoad="webGLStart();">
-		<p id="heading" class="heading">Hack4Europe 3D</p>
-    	<p id="heading2" class="heading2">Simon Kenny, Brendan Flynn, Richard Cyganiak, Mark Reilly</p>
-
-	<canvas id="lesson10-canvas" style="border: none;" width="750" height="500"></canvas>
-
-    <div id="loadingtext">Loading gallery...</div>
-
-	<br/>
-    
-    <div id="sidepanel">
-    	<p id="infopanel">
-        	Step forward/back - Up/Down :: Step left/right - A/D :: Look left/right - Left/Right :: Look up/down - PgUp/PgDown
-        </p>
-		<p id = "debugfeedback">-</p>
-        <img id="texturedisplay"/>
-    </div>
-</body>
-</html>
