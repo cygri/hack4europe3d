@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Visualising Dissent: Posters Against the Wars in Iraq and Vietnam</title>
 
-<script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+<script type="text/javascript" src="gl-matrix-min.js"></script>
 <script type="text/javascript" src="webgl-utils.js"></script>
 
 <script id="shader-fs" type="x-shader/x-fragment">
@@ -327,10 +327,9 @@
 							[ 1.0, 0.0, 1.0, 1.0 ],
 							[ 1.0, 1.0, 1.0, 0.0 ] ];
 	
-	var floorAndCeilingTextureTileFactor = 4.0;
-		
-			
 	
+	var floorAndCeilingTextureTileFactor = 1.0;
+		
 	function buildFloorAndCeiling() {
 		var floorVertexPositions = [];
 		var floorVertexTextureCoords = [];
