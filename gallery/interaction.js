@@ -191,12 +191,24 @@ function getMouseHit() {
     }
     if (floorHit && floorHit[0] < mouseHit[0]) {
         mouseHit = floorHit;
+        toggleHighlighter(true);
+        moveHighlighter(mouseHit[1], mouseHit[2]);
     }
     if (verticalWallHit && verticalWallHit[0] < mouseHit[0]) {
         mouseHit = verticalWallHit;
+        if (mouseHit[3] == 'E') {
+            moveHighlighter(mouseHit[1] + 1, mouseHit[2], 2);
+        } else {
+            moveHighlighter(mouseHit[1] - 1, mouseHit[2], 3);
+        }
     }
     if (horizontalWallHit && horizontalWallHit[0] < mouseHit[0]) {
         mouseHit = horizontalWallHit;
+        if (mouseHit[3] == 'S') {
+            moveHighlighter(mouseHit[1], mouseHit[2] + 1, 0);
+        } else {
+            moveHighlighter(mouseHit[1], mouseHit[2] - 1, 1);
+        }
     }
     if (mouseHit[0] == Number.MAX_VALUE) {
         return null;
