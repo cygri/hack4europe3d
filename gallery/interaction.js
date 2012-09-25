@@ -1,5 +1,7 @@
 var canvasId = 'lesson10-canvas';
 
+var mode = 'preview'; // or 'build' or 'place'
+
 var cameraPosition = vec3.create([0, 0, 0]);
 var mouseVector = vec3.create([0, 0, 0]);
 var mouseHit = null;
@@ -26,15 +28,56 @@ var buildHandlers = {
             dx = +1;
         }
         cubeMap[gridZ + dy][gridX + dx] = 1;
+    },
+    moveMouse: function(mouseHit) {
+        if (mouseHit == null) {
+            toggleHighlighter(false);
+        } else if (mouseHit[3] == 'C') {
+            toggleHighlighter(false);
+        } else if (mouseHit[3] == 'F') {
+            toggleHighlighter(true);
+            moveHighlighter(mouseHit[1], mouseHit[2]);
+        } else if (mouseHit[3] == 'E') {
+            toggleHighlighter(true);
+            moveHighlighter(mouseHit[1] + 1, mouseHit[2], 2);
+        } else if (mouseHit[3] == 'W') {
+            toggleHighlighter(true);
+            moveHighlighter(mouseHit[1] - 1, mouseHit[2], 3);
+        } else if (mouseHit[3] == 'S') {
+            toggleHighlighter(true);
+            moveHighlighter(mouseHit[1], mouseHit[2] + 1, 0);
+        } else if (mouseHit[3] == 'N') {
+            toggleHighlighter(true);
+            moveHighlighter(mouseHit[1], mouseHit[2] - 1, 1);
+        }
     }
 };
 
 var placePicHandlers = {
     clickWall: function(gridX, gridZ, direction, localX, localY) {
-    }
-}
+        if (direction == 'S') {
+            gridZ += 1;
+            var face = 0;
+        } else if (direction == 'N') {
+            gridZ -= 1;
+            var face = 1;
+        } else if (direction == 'E') {
+            gridX += 1;
+            var face = 2;
+        } else if (direction == 'W') {
+            gridX -= 1;
+            var face = 3;
+        }
+        placeArtwork(gridX, gridZ, face, localX, localY, artworkURL, artworkWidth, artworkHeight);
+    },
+    moveMouse: function() { toggleHighlighter(false); }
+};
 
-var handlers = buildHandlers;
+var previewHandlers = {
+    moveMouse: function() { toggleHighlighter(false); }
+};
+
+var handlers = {};
 
 function initInteraction() {
     initClickPos();
@@ -191,24 +234,12 @@ function getMouseHit() {
     }
     if (floorHit && floorHit[0] < mouseHit[0]) {
         mouseHit = floorHit;
-        toggleHighlighter(true);
-        moveHighlighter(mouseHit[1], mouseHit[2]);
     }
     if (verticalWallHit && verticalWallHit[0] < mouseHit[0]) {
         mouseHit = verticalWallHit;
-        if (mouseHit[3] == 'E') {
-            moveHighlighter(mouseHit[1] + 1, mouseHit[2], 2);
-        } else {
-            moveHighlighter(mouseHit[1] - 1, mouseHit[2], 3);
-        }
     }
     if (horizontalWallHit && horizontalWallHit[0] < mouseHit[0]) {
         mouseHit = horizontalWallHit;
-        if (mouseHit[3] == 'S') {
-            moveHighlighter(mouseHit[1], mouseHit[2] + 1, 0);
-        } else {
-            moveHighlighter(mouseHit[1], mouseHit[2] - 1, 1);
-        }
     }
     if (mouseHit[0] == Number.MAX_VALUE) {
         return null;
@@ -219,6 +250,14 @@ function getMouseHit() {
 function animate2() {
     cameraPosition = vec3.create([xPos, yPos, zPos]);
     mouseHit = getMouseHit();
+    if (mode == 'preview') {
+        handlers = previewHandlers;
+    } else if (mode == 'build') {
+        handlers = buildHandlers;
+    } else if (mode == 'place') {
+        handlers = placePicHandlers;
+    }
+    handlers.moveMouse(mouseHit);
 }
 
 function toGrid(value) {

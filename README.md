@@ -24,7 +24,6 @@ Hack4Europe 3D exhibition app
 ## Minimal demo
 
 * Requires: Click handling
-* Requires: Work around same-origin restriction???
 * Click on wall
 * Pick image from Europeana
 * Image is placed on wall
