@@ -551,6 +551,7 @@
 		}
 		var x = gridX;
 		var y = gridY;
+		
 		if( face == 2 ) { //west
 				vertexPositions = [ (x * wallWidth) - artworkDistanceFromWall, (wallWidth * vertexFactorMap[0][1] ) ,
 									(y * wallWidth) + (wallWidth * vertexFactorMap[0][0] ),
