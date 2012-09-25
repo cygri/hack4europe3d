@@ -9,11 +9,10 @@ var clickPosTexture;
 var clickPosVertexPosBuffer = null;
 var clickPosVertexTextureCoordBuffer = null;
 
-var handlers = buildHandlers;
-
 var buildHandlers = {
     clickFloor: function(gridX, gridZ, localX, localY) {
-        cubeMap[y][x] = 0;
+        if (gridX == toGrid(xPos) && gridZ == toGrid(zPos)) return;
+        cubeMap[gridZ][gridX] = 0;
     },
     clickWall: function(gridX, gridZ, direction, localX, localY) {
         var dx = dy = 0;
@@ -26,7 +25,7 @@ var buildHandlers = {
         } else if (direction == 'E') {
             dx = +1;
         }
-        cubeMap[y + dy][x + dx] = 1;
+        cubeMap[gridZ + dy][gridX + dx] = 1;
     }
 };
 
@@ -35,13 +34,14 @@ var placePicHandlers = {
     }
 }
 
+var handlers = buildHandlers;
+
 function initInteraction() {
     initClickPos();
     var canvas = document.getElementById(canvasId);
     canvas.onclick = function(event) {
 //        clickPos = vec3.create(mouseVector);
 //        vec3.add(clickPos, cameraPosition);
-        return;
         if (mouseHit != null) {
             if (mouseHit[3] == 'C') {
                 if (handlers.clickCeiling) {
@@ -133,16 +133,16 @@ function getMouseHit() {
             var gridOffsetX = 0;
             var wall = 'W';
         }
-        while (gridX >= 0 && gridX < mapWidth) {
+        while (gridX > 0 && gridX < mapWidth - 1) {
             var intersectionX = toWorld(gridX + gridOffsetX);
             var camToGrid = intersectionX - cameraPosition[0];
             var intersectionDist = camToGrid / mouseVector[0];
             var intersectionZ = mouseVector[2] / mouseVector[0] * camToGrid + cameraPosition[2];
-            var intersectionY = mouseVector[2] / mouseVector[1] * camToGrid + cameraPosition[2];
+            var intersectionY = mouseVector[1] / mouseVector[0] * camToGrid + cameraPosition[1];
             var gridZ = toGrid(intersectionZ);
             var localX = intersectionZ - toWorld(gridZ);
             var localY = intersectionY - toWorld(toGrid(intersectionY));
-            if (gridZ < 0 || gridZ > mapHeight) {
+            if (gridZ < 0 || gridZ >= mapHeight) {
                 break;
             }
             if (isWall(gridX + stepX, gridZ)) {
@@ -165,12 +165,12 @@ function getMouseHit() {
             var gridOffsetZ = 0;
             var wall = 'N';
         }
-        while (gridZ >= 0 && gridZ < mapHeight) {
+        while (gridZ > 0 && gridZ < mapHeight - 1) {
             var intersectionZ = toWorld(gridZ + gridOffsetZ);
             var camToGrid = intersectionZ - cameraPosition[2];
             var intersectionDist = camToGrid / mouseVector[2];
             var intersectionX = mouseVector[0] / mouseVector[2] * camToGrid + cameraPosition[0];
-            var intersectionY = mouseVector[0] / mouseVector[1] * camToGrid + cameraPosition[0];
+            var intersectionY = mouseVector[1] / mouseVector[2] * camToGrid + cameraPosition[1];
             var gridX = toGrid(intersectionX);
             var localX = intersectionX - toWorld(gridX);
             var localY = intersectionY - toWorld(toGrid(intersectionY));
@@ -200,19 +200,7 @@ function getMouseHit() {
     }
     if (mouseHit[0] == Number.MAX_VALUE) {
         return null;
-        document.getElementById('mousepos').childNodes[0].nodeValue = 'nothing';
     }
-
-    if (mouseHit[3] == 'F') {
-        var s = 'Floor at (';
-    } else if (mouseHit[3] == 'C') {
-        var s = 'Ceiling at (';
-    } else {
-        var s = mouseHit[3] + ' wall at (';
-    }
-    s += mouseHit[1] + ',' + mouseHit[2] + ') with local coords (';
-    s += mouseHit[4] + ',' + mouseHit[5] + '), distance ' + mouseHit[0];
-    document.getElementById('mousepos').childNodes[0].nodeValue = s;
     return mouseHit;
 }
 
