@@ -319,8 +319,6 @@
 	var artworksTextureCoordBuffer = [];
 	var artworksTextureNumber = [];
 	
-	var buildingLayoutVertexCount = 0;
-	
 	
 	var vertexFactorMap = [ [ 0.0, 0.0, 0.0, 1.0 ],
 							[ 0.0, 1.0, 0.0, 0.0 ],
@@ -368,39 +366,58 @@
 		}
 		
 		// push floors to GL arrays
-		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount]);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(floorVertexPositions), gl.STATIC_DRAW);
-        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].itemSize = 3;
-        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].numItems = floorVertexCount;
+//		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[0]);
+//        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(floorVertexPositions), gl.STATIC_DRAW);
+        gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(floorVertexPositions));
+        buildingLayoutVertexPositionBuffer[0].itemSize = 3;
+        buildingLayoutVertexPositionBuffer[0].numItems = floorVertexCount;
 
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount]);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(floorVertexTextureCoords), gl.STATIC_DRAW);
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].itemSize = 2;
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].numItems = floorVertexCount;
+//        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[0]);
+//        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(floorVertexTextureCoords), gl.STATIC_DRAW);
+        gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(floorVertexTextureCoords));
+        buildingLayoutVertexTextureCoordBuffer[0].itemSize = 2;
+        buildingLayoutVertexTextureCoordBuffer[0].numItems = floorVertexCount;
 		
-		buildingLayoutTextureNumber[buildingLayoutVertexCount] = floorTextureSubscript;
-		buildingLayoutVertexCount++;
+		buildingLayoutTextureNumber[0] = floorTextureSubscript;
 		
 		// push ceilings to GL arrays
-		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount]);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(ceilingVertexPositions), gl.STATIC_DRAW);
-        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].itemSize = 3;
-        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].numItems = ceilingVertexCount;
+//		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[1]);
+//        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(ceilingVertexPositions), gl.STATIC_DRAW);
+        gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(ceilingVertexPositions));
+        buildingLayoutVertexPositionBuffer[1].itemSize = 3;
+        buildingLayoutVertexPositionBuffer[1].numItems = ceilingVertexCount;
 
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount]);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(ceilingVertexTextureCoords), gl.STATIC_DRAW);
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].itemSize = 2;
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].numItems = ceilingVertexCount;
+//        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[1]);
+//        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(ceilingVertexTextureCoords), gl.STATIC_DRAW);
+        gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(ceilingVertexTextureCoords));
+        buildingLayoutVertexTextureCoordBuffer[1].itemSize = 2;
+        buildingLayoutVertexTextureCoordBuffer[1].numItems = ceilingVertexCount;
 		
-		buildingLayoutTextureNumber[buildingLayoutVertexCount] = ceilingTextureSubscript;
-		buildingLayoutVertexCount++;
+		buildingLayoutTextureNumber[1] = ceilingTextureSubscript;
 	}
 	
+    function initFloorAndCeiling() {
+		buildingLayoutVertexPositionBuffer[0] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[0]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(dummyBuffer), gl.DYNAMIC_DRAW);
+
+        buildingLayoutVertexTextureCoordBuffer[0] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[0]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(dummyBuffer), gl.DYNAMIC_DRAW);
 	
+		buildingLayoutVertexPositionBuffer[1] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[1]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(dummyBuffer), gl.DYNAMIC_DRAW);
+
+        buildingLayoutVertexTextureCoordBuffer[1] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[1]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(dummyBuffer), gl.DYNAMIC_DRAW);
+    }
+
 	var wallTextureTileFactor = 1.0;
 	
 	function buildWalls() {
@@ -425,20 +442,21 @@
 			}
 		}
 		// push horizontal walls to GL arrays
-		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount]);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(horizontalVertexPositions), gl.STATIC_DRAW);
-        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].itemSize = 3;
-        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].numItems = horizontalVertexCount;
+//		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[2]);
+//        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(horizontalVertexPositions), gl.STATIC_DRAW);
+        gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(horizontalVertexPositions));
+        buildingLayoutVertexPositionBuffer[2].itemSize = 3;
+        buildingLayoutVertexPositionBuffer[2].numItems = horizontalVertexCount;
 
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount]);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(horizontalVertexTextureCoords), gl.STATIC_DRAW);
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].itemSize = 2;
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].numItems = horizontalVertexCount;
+ //       buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[2]);
+//        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(horizontalVertexTextureCoords), gl.STATIC_DRAW);
+        gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(horizontalVertexTextureCoords));
+        buildingLayoutVertexTextureCoordBuffer[2].itemSize = 2;
+        buildingLayoutVertexTextureCoordBuffer[2].numItems = horizontalVertexCount;
 		
-		buildingLayoutTextureNumber[buildingLayoutVertexCount] = wallTextureSubscript;
-		buildingLayoutVertexCount++;
+		buildingLayoutTextureNumber[2] = wallTextureSubscript;
 		
 		// vertical walls
 		var verticalVertexPositions = [];
@@ -462,22 +480,44 @@
 			}
 		}
 		// push vertical walls to GL arrays
-		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount]);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticalVertexPositions), gl.STATIC_DRAW);
-        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].itemSize = 3;
-        buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount].numItems = verticalVertexCount;
+//		buildingLayoutVertexPositionBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[3]);
+//        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticalVertexPositions), gl.STATIC_DRAW);
+        gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(verticalVertexPositions));
+        buildingLayoutVertexPositionBuffer[3].itemSize = 3;
+        buildingLayoutVertexPositionBuffer[3].numItems = verticalVertexCount;
 
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount]);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticalVertexTextureCoords), gl.STATIC_DRAW);
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].itemSize = 2;
-        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount].numItems = verticalVertexCount;
+//        buildingLayoutVertexTextureCoordBuffer[buildingLayoutVertexCount] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[3]);
+//        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticalVertexTextureCoords), gl.STATIC_DRAW);
+        gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(verticalVertexTextureCoords));
+        buildingLayoutVertexTextureCoordBuffer[3].itemSize = 2;
+        buildingLayoutVertexTextureCoordBuffer[3].numItems = verticalVertexCount;
 		
-		buildingLayoutTextureNumber[buildingLayoutVertexCount] = wallTextureSubscript;
-		buildingLayoutVertexCount++;
+		buildingLayoutTextureNumber[3] = wallTextureSubscript;
 	}
 	
+    var dummyBuffer = [];
+    for (var i = 0; i < 1000; i++) { dummyBuffer.push(0); }
+
+    function initWalls() {
+		buildingLayoutVertexPositionBuffer[2] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[2]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(dummyBuffer), gl.DYNAMIC_DRAW);
+
+        buildingLayoutVertexTextureCoordBuffer[2] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[2]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(dummyBuffer), gl.DYNAMIC_DRAW);
+
+		buildingLayoutVertexPositionBuffer[3] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexPositionBuffer[3]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(dummyBuffer), gl.DYNAMIC_DRAW);
+
+        buildingLayoutVertexTextureCoordBuffer[3] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buildingLayoutVertexTextureCoordBuffer[3]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(dummyBuffer), gl.DYNAMIC_DRAW);
+    }
+
 	function createHighlighter() {
 		var vertexPositions = [];
 		var vertexTextureCoords = [];
@@ -515,8 +555,8 @@
 
 	
     function loadWorld() {		
-		buildFloorAndCeiling();
-		buildWalls();
+		initFloorAndCeiling();
+		initWalls();
 		createHighlighter();
 		
         document.getElementById("loadingtext").textContent = "";
@@ -539,8 +579,11 @@
         mat4.rotate(mvMatrix, degToRad(-yaw), [0, 1, 0]);
         mat4.translate(mvMatrix, [-xPos, -yPos, -zPos]);
 		
+		buildFloorAndCeiling();
+		buildWalls();
+
 		// Draw building layout
-		for( var i = 0 ; i < buildingLayoutVertexCount ; i++ ) {
+		for( var i = 0 ; i < 4 ; i++ ) {
 			gl.activeTexture(gl.TEXTURE0 + i);
 			gl.bindTexture(gl.TEXTURE_2D, buildingTextures[buildingLayoutTextureNumber[i]]);
 			//gl.bindTexture(gl.TEXTURE_2D, buildingTextures[0]);

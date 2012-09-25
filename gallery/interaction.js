@@ -9,11 +9,9 @@ var clickPosTexture;
 var clickPosVertexPosBuffer = null;
 var clickPosVertexTextureCoordBuffer = null;
 
-var handlers = buildHandlers;
-
 var buildHandlers = {
     clickFloor: function(gridX, gridZ, localX, localY) {
-        cubeMap[y][x] = 0;
+        cubeMap[gridZ][gridX] = 0;
     },
     clickWall: function(gridX, gridZ, direction, localX, localY) {
         var dx = dy = 0;
@@ -26,7 +24,7 @@ var buildHandlers = {
         } else if (direction == 'E') {
             dx = +1;
         }
-        cubeMap[y + dy][x + dx] = 1;
+        cubeMap[gridZ + dy][gridX + dx] = 1;
     }
 };
 
@@ -35,13 +33,14 @@ var placePicHandlers = {
     }
 }
 
+var handlers = buildHandlers;
+
 function initInteraction() {
     initClickPos();
     var canvas = document.getElementById(canvasId);
     canvas.onclick = function(event) {
 //        clickPos = vec3.create(mouseVector);
 //        vec3.add(clickPos, cameraPosition);
-        return;
         if (mouseHit != null) {
             if (mouseHit[3] == 'C') {
                 if (handlers.clickCeiling) {
@@ -133,7 +132,7 @@ function getMouseHit() {
             var gridOffsetX = 0;
             var wall = 'W';
         }
-        while (gridX >= 0 && gridX < mapWidth) {
+        while (gridX > 0 && gridX < mapWidth - 1) {
             var intersectionX = toWorld(gridX + gridOffsetX);
             var camToGrid = intersectionX - cameraPosition[0];
             var intersectionDist = camToGrid / mouseVector[0];
@@ -165,7 +164,7 @@ function getMouseHit() {
             var gridOffsetZ = 0;
             var wall = 'N';
         }
-        while (gridZ >= 0 && gridZ < mapHeight) {
+        while (gridZ > 0 && gridZ < mapHeight - 1) {
             var intersectionZ = toWorld(gridZ + gridOffsetZ);
             var camToGrid = intersectionZ - cameraPosition[2];
             var intersectionDist = camToGrid / mouseVector[2];
@@ -199,8 +198,8 @@ function getMouseHit() {
         mouseHit = horizontalWallHit;
     }
     if (mouseHit[0] == Number.MAX_VALUE) {
-        return null;
         document.getElementById('mousepos').childNodes[0].nodeValue = 'nothing';
+        return null;
     }
 
     if (mouseHit[3] == 'F') {
