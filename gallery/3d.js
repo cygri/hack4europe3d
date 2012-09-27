@@ -546,8 +546,9 @@
 		// create texture
 		artworksTextures[numArtworks] = gl.createTexture();
         artworksTextures[numArtworks].image = new Image();
+        var tmp = numArtworks;
         artworksTextures[numArtworks].image.onload = function () {
-            handleLoadedTexture(artworksTextures[numArtworks])
+            handleLoadedTexture(artworksTextures[tmp])
         }
         artworksTextures[numArtworks].image.src = artworks[numArtworks].imageURL;
 		
@@ -617,17 +618,17 @@
 		var vertexCount = 6;
 		
 		// push vertical walls to GL arrays
-		artworksVertexPositionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, artworksVertexPositionBuffer);
+		artworksVertexPositionBuffer[numArtworks] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, artworksVertexPositionBuffer[numArtworks]);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.DYNAMIC_DRAW);
-        artworksVertexPositionBuffer.itemSize = 3;
-        artworksVertexPositionBuffer.numItems = vertexCount;
+        artworksVertexPositionBuffer[numArtworks].itemSize = 3;
+        artworksVertexPositionBuffer[numArtworks].numItems = vertexCount;
 
-        artworksTextureCoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, artworksTextureCoordBuffer);
+        artworksTextureCoordBuffer[numArtworks] = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, artworksTextureCoordBuffer[numArtworks]);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
-        artworksTextureCoordBuffer.itemSize = 2;
-        artworksTextureCoordBuffer.numItems = vertexCount;
+        artworksTextureCoordBuffer[numArtworks].itemSize = 2;
+        artworksTextureCoordBuffer[numArtworks].numItems = vertexCount;
 		
 		numArtworks++;
 	}
