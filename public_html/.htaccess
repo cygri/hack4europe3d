@@ -1,0 +1,21 @@
+RewriteEngine on
+RewriteRule ^$ index.html [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*).html(.*) index.php$2 [L,QSA]
+
+
+IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+
+<Limit GET POST>
+order deny,allow
+deny from all
+allow from all
+</Limit>
+<Limit PUT DELETE>
+order deny,allow
+deny from all
+</Limit>
+AuthName simandsim.com
+AuthUserFile /home/simandsi/public_html/_vti_pvt/service.pwd
+AuthGroupFile /home/simandsi/public_html/_vti_pvt/service.grp

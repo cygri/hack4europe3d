@@ -1,0 +1,73 @@
+body {
+    background: #666;
+}
+
+h1, h2, h3, h4 {
+    color: #FAFAFA;
+}
+.well {
+    background-color: #444;
+    color: #FAFAFA;
+}
+
+#tiles {
+    position: relative; /** Needed to ensure items are laid out relative to this container */
+    margin: 0;
+    list-style-type: none;
+}
+/** Grid items */
+#tiles li {
+    display: none;
+    margin: 4px;
+    padding: 6px;
+    width: 200px;
+    /*border: 1px solid #dedede;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background-color: #fff; */ /** Hide items initially to avoid a flicker effect **/
+    cursor: pointer;
+    background-color: black;
+    overflow: hidden;
+    border: solid 1px #FAFAFA;
+    overflow: hidden;
+}
+#tiles li img { display: block; margin: 0 auto; }
+#tiles li p { margin: 7px 0 0 7px; color: #666; font-size: 12px; }
+#tiles ali:nth-child(3n) { height: 175px; }
+#tiles ali:nth-child(4n-3) { padding-bottom: 30px; }
+#tiles ali:nth-child(5n) { height: 250px; }
+#tiles .grid-itm { display: none; background: #000000; color: #ffffff; padding: 5px; }
+#tiles .grid-itm h2 { font-size: 16px; margin: 0px; }
+#tiles .grid-itm h3 { font-size: 12px; margin: 0px; }
+#tiles .grid-itm h4 { font-size: 10px; margin: 0px; }
+#tiles .grid-itm .btn {
+    margin-top: 15px;
+    font-size: 10px;
+    
+}
+#wellfindadd {
+    position: fixed;
+    top: 50px;
+    left: 10px;
+    bottom: 5px;
+}
+
+#mycollection, #mycollection li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#mycollection-wrap {
+    height: 66%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 307px;
+    position: relative;
+}
+#mycollection li {
+    margin-bottom: 15px;
+}
+.nextstep {
+    margin-top: 15px;
+}

@@ -1,0 +1,505 @@
+[23-Sep-2012 16:33:31] PHP Parse error:  syntax error, unexpected T_FUNCTION, expecting ')' in /home/simandsi/public_html/index.php on line 48
+[23-Sep-2012 16:35:11] PHP Parse error:  syntax error, unexpected T_FUNCTION, expecting ')' in /home/simandsi/public_html/index.php on line 48
+[23-Sep-2012 16:48:09] PHP Parse error:  syntax error, unexpected T_FUNCTION, expecting ')' in /home/simandsi/public_html/index.php on line 48
+[23-Sep-2012 16:48:27] PHP Parse error:  syntax error, unexpected T_FUNCTION, expecting ')' in /home/simandsi/public_html/index.php on line 48
+[23-Sep-2012 16:48:36] PHP Parse error:  syntax error, unexpected T_FUNCTION, expecting ')' in /home/simandsi/public_html/index.php on line 48
+[23-Sep-2012 17:05:22] PHP Parse error:  syntax error, unexpected T_FUNCTION, expecting ')' in /home/simandsi/public_html/index.php on line 48
+[23-Sep-2012 17:06:56] PHP Parse error:  syntax error, unexpected T_FUNCTION, expecting ')' in /home/simandsi/public_html/index.php on line 48
+[23-Sep-2012 23:08:38] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/system/tree_array.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/Cache.php on line 76
+[23-Sep-2012 23:08:38] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/system/tree_array.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/Cache.php on line 76
+[23-Sep-2012 23:08:38] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/simandsi/application/core/v1/Framework/Cache.php:76) in /home/simandsi/application/core/v1/Framework/Helper.php on line 25
+[23-Sep-2012 23:08:38] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:37] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:37] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:37] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:37] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:38] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:38] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:38] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:38] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:39] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:39] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:39] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:40] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[23-Sep-2012 23:23:40] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 01:38:55] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 02:31:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:40:19] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:40:30] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:40:40] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:40:50] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:41:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:41:11] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:41:21] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:41:32] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:41:43] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:59:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:59:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:59:02] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 05:59:03] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 06:28:25] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 06:28:38] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 06:28:49] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 06:28:59] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 06:29:10] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 06:29:21] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 06:29:33] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 06:29:44] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 06:29:53] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:39] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:39] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:39] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:40] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:40] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:40] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:41] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:41] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:41] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:42] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:42] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:42] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:43] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:43] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:43] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:44] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:44] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:45] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:45] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:45] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:40:45] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:31] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:31] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:31] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:32] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:32] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:32] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:33] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:33] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:33] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:34] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:34] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:34] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:37] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:37] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:37] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:46:38] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:54] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:54] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:55] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:55] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:55] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:56] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:56] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:56] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:57] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:57] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:58] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:47:58] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:02] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:02] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:02] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:31] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:31] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:32] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:32] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:32] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:33] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:33] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:33] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:34] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:34] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:34] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:37] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:37] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:37] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:38] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:55] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:55] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:55] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:56] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:56] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:56] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:57] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:57] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:57] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:58] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:58] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:59] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:59] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:48:59] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:49:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:49:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:49:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:49:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:49:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:49:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:49:02] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:10] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:30] PHP Fatal error:  Class 'Core_Intact_Action' not found in /home/simandsi/application/core/v1/view/system/notfound/action.php on line 3
+[24-Sep-2012 11:51:58] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/head.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:51:58] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/head.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:51:58] PHP Fatal error:  Class 'Core_Auth' not found in /home/simandsi/application/core/v1/layouts/Default/header.php on line 31
+[24-Sep-2012 11:51:58] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:58] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:58] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:58] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:58] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:58] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:58] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/head.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:51:58] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/head.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:51:58] PHP Fatal error:  Class 'Core_Auth' not found in /home/simandsi/application/core/v1/layouts/Default/header.php on line 31
+[24-Sep-2012 11:51:59] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:59] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:59] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:59] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/head.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:51:59] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/head.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:51:59] PHP Fatal error:  Class 'Core_Auth' not found in /home/simandsi/application/core/v1/layouts/Default/header.php on line 31
+[24-Sep-2012 11:51:59] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 11:51:59] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/head.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:51:59] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/head.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:51:59] PHP Fatal error:  Class 'Core_Auth' not found in /home/simandsi/application/core/v1/layouts/Default/header.php on line 31
+[24-Sep-2012 11:51:59] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/head.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:51:59] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/head.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:51:59] PHP Fatal error:  Class 'Core_Auth' not found in /home/simandsi/application/core/v1/layouts/Default/header.php on line 31
+[24-Sep-2012 11:52:00] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/head.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:00] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/head.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:00] PHP Fatal error:  Class 'Core_Auth' not found in /home/simandsi/application/core/v1/layouts/Default/header.php on line 31
+[24-Sep-2012 11:52:00] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/head.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:00] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/head.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:00] PHP Fatal error:  Class 'Core_Auth' not found in /home/simandsi/application/core/v1/layouts/Default/header.php on line 31
+[24-Sep-2012 11:52:00] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/head.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:00] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/head.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:00] PHP Fatal error:  Class 'Core_Auth' not found in /home/simandsi/application/core/v1/layouts/Default/header.php on line 31
+[24-Sep-2012 11:52:00] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/head.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:00] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/head.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:00] PHP Fatal error:  Class 'Core_Auth' not found in /home/simandsi/application/core/v1/layouts/Default/header.php on line 31
+[24-Sep-2012 11:52:01] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/head.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:01] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/head.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:01] PHP Fatal error:  Class 'Core_Auth' not found in /home/simandsi/application/core/v1/layouts/Default/header.php on line 31
+[24-Sep-2012 11:52:01] PHP Warning:  include(/home/simandsi/application/core/v1/view/_partials/head.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:01] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/view/_partials/head.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 25
+[24-Sep-2012 11:52:01] PHP Fatal error:  Class 'Core_Auth' not found in /home/simandsi/application/core/v1/layouts/Default/header.php on line 31
+[24-Sep-2012 12:38:47] PHP Warning:  include(/home/simandsi/application/core/v1/layouts/json/header.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 55
+[24-Sep-2012 12:38:47] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/layouts/json/header.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 55
+[24-Sep-2012 12:38:47] PHP Warning:  include(/home/simandsi/application/core/v1/layouts/json/footer.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/Framework/View.php on line 69
+[24-Sep-2012 12:38:47] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening '/home/simandsi/application/core/v1/layouts/json/footer.php' for inclusion (include_path='/home/simandsi/application/plugins/:.:/usr/lib/php:/usr/local/lib/php') in /home/simandsi/application/core/v1/Framework/View.php on line 69
+[24-Sep-2012 13:11:49] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:17:49] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:17:49] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:08] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:32:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:45] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:33:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:34] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:34:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:35:17] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 14:45:23] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 7
+[24-Sep-2012 14:45:54] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 8
+[24-Sep-2012 14:46:42] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 8
+[24-Sep-2012 14:46:52] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 8
+[24-Sep-2012 14:48:19] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 8
+[24-Sep-2012 14:48:54] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:14] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:14] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:14] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:14] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:14] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:14] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:14] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:15] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:15] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:15] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:15] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:52:15] PHP Warning:  file_get_contents(&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:27] PHP Warning:  file_get_contents(02302/952B75521B7A11AB0F47BD4E3243604308C0E2E7.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:27] PHP Warning:  file_get_contents(2020801/57E3AF6B935093885CCD816392C967E8A1D9FDC4.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:27] PHP Warning:  file_get_contents(08511/CB70B51E902DF1CB0898EB1CD4ED83799F73C696.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:27] PHP Warning:  file_get_contents(92040/B77834EED10F61786578855F5FAD9541933A609D.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:27] PHP Warning:  file_get_contents(91626/6C27F0DA9DBD1AD5ED51AD3E9E8B4C2CE861CDEA.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:27] PHP Warning:  file_get_contents(02302/3484773C297D46E068BC2FD9CFCA3587BCD6F795.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:28] PHP Warning:  file_get_contents(02302/E965173A76D2F08A3B4CACBD471E024479FC1665.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:28] PHP Warning:  file_get_contents(02302/0374E2A1EF7249494E3AD51E2FE5829F72EADC26.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:28] PHP Warning:  file_get_contents(02302/B6A340C1B744767E710BB31BA839AA22255F9E40.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:28] PHP Warning:  file_get_contents(02302/B814E530C11081BA5D4102C4CC0FD9C705C318F5.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:28] PHP Warning:  file_get_contents(2020801/E0FF1DCB8E4677E695EA7BF5FCB8036469949B9B.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:28] PHP Warning:  file_get_contents(9200105/80418670551C23B95F13E1158B9A8280014EB42A.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:34] PHP Warning:  file_get_contents(02302/952B75521B7A11AB0F47BD4E3243604308C0E2E7.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:53:55] PHP Warning:  file_get_contents(http://www.europeana.eu/portal/record/02302/952B75521B7A11AB0F47BD4E3243604308C0E2E7.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:54:12] PHP Warning:  file_get_contents(http://www.europeana.eu/portal/record/02302/952B75521B7A11AB0F47BD4E3243604308C0E2E7.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 10
+[24-Sep-2012 14:54:17] PHP Fatal error:  Class 'requestobject_Action' not found in /home/simandsi/application/core/v1/Framework/Init.php on line 81
+[24-Sep-2012 14:54:20] PHP Warning:  file_get_contents(http://www.europeana.eu/portal/record/02302/952B75521B7A11AB0F47BD4E3243604308C0E2E7.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:54:44] PHP Warning:  file_get_contents(http://www.europeana.eu/portal/record/02302/952B75521B7A11AB0F47BD4E3243604308C0E2E7.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 14:54:46] PHP Warning:  file_get_contents(http://www.europeana.eu/portal/record/02302/952B75521B7A11AB0F47BD4E3243604308C0E2E7.json?wskey=ROAMXHDBDQ&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[24-Sep-2012 15:21:46] PHP Warning:  file_get_contents(1Da+Vinci&amp;wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/simandsi/application/core/v1/view/system/search/action.php on line 6
+[24-Sep-2012 17:08:29] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 17:09:40] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[24-Sep-2012 20:19:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 02:46:11] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 03:51:03] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 04:35:40] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 05:40:29] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 07:16:33] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 09:04:16] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 10:16:33] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 11:10:17] PHP Warning:  file_get_contents(http://www.europeana.eu/portal/record/02302/B6A340C1B744767E710BB31BA839AA22255F9E40.json?wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[25-Sep-2012 11:24:28] PHP Warning:  file_get_contents(http://www.europeana.eu/portal/record/08532/0B1DD1362DDD308954376C22CDBB33599DEACAAE.json?wskey=ROAMXHDBDQ) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/simandsi/application/core/v1/view/system/requestobject/action.php on line 9
+[25-Sep-2012 11:46:54] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:20:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:45:54] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:45:54] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:46:32] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:46:32] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:47:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:47:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:48:30] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:48:30] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:48:41] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:48:41] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:49:14] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:49:14] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:51:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:51:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:51:07] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 15:51:07] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 16:09:38] PHP Fatal error:  Call to undefined method phpthumb::getInstance() in /home/simandsi/application/core/v1/view/image/action.php on line 109
+[25-Sep-2012 16:10:24] PHP Fatal error:  Call to undefined method phpthumb::getInstance() in /home/simandsi/application/core/v1/view/image/action.php on line 109
+[25-Sep-2012 16:10:35] PHP Fatal error:  Call to undefined method phpthumb::getInstance() in /home/simandsi/application/core/v1/view/image/action.php on line 109
+[25-Sep-2012 16:10:56] PHP Fatal error:  Call to undefined method phpthumb::registerPlugin() in /home/simandsi/application/core/v1/view/image/action.php on line 110
+[25-Sep-2012 16:12:02] PHP Fatal error:  Uncaught exception 'ImagickException' with message 'Unable to read the file: test.png' in /home/simandsi/application/core/v1/view/image/action.php:114
+Stack trace:
+#0 /home/simandsi/application/core/v1/view/image/action.php(114): Imagick->__construct('test.png')
+#1 /home/simandsi/application/core/v1/Framework/Init.php(83): image_Action->init()
+#2 /home/simandsi/application/core/v1/Framework/Init.php(25): Core_Framework_Init->get_action()
+#3 /home/simandsi/public_html/index.php(82): Core_Framework_Init->start(Array)
+#4 {main}
+  thrown in /home/simandsi/application/core/v1/view/image/action.php on line 114
+[25-Sep-2012 16:12:30] PHP Parse error:  syntax error, unexpected ':' in /home/simandsi/application/core/v1/view/image/action.php on line 114
+[25-Sep-2012 16:13:41] PHP Fatal error:  Uncaught exception 'ImagickException' with message 'Unrecognized color string' in /home/simandsi/application/core/v1/view/image/action.php:122
+Stack trace:
+#0 /home/simandsi/application/core/v1/view/image/action.php(122): Imagick->newimage(256, 256, 'cream', 'png')
+#1 /home/simandsi/application/core/v1/Framework/Init.php(83): image_Action->init()
+#2 /home/simandsi/application/core/v1/Framework/Init.php(25): Core_Framework_Init->get_action()
+#3 /home/simandsi/public_html/index.php(82): Core_Framework_Init->start(Array)
+#4 {main}
+  thrown in /home/simandsi/application/core/v1/view/image/action.php on line 122
+[25-Sep-2012 16:13:43] PHP Fatal error:  Uncaught exception 'ImagickException' with message 'Unrecognized color string' in /home/simandsi/application/core/v1/view/image/action.php:122
+Stack trace:
+#0 /home/simandsi/application/core/v1/view/image/action.php(122): Imagick->newimage(256, 256, 'cream', 'png')
+#1 /home/simandsi/application/core/v1/Framework/Init.php(83): image_Action->init()
+#2 /home/simandsi/application/core/v1/Framework/Init.php(25): Core_Framework_Init->get_action()
+#3 /home/simandsi/public_html/index.php(82): Core_Framework_Init->start(Array)
+#4 {main}
+  thrown in /home/simandsi/application/core/v1/view/image/action.php on line 122
+[25-Sep-2012 16:14:13] PHP Fatal error:  Uncaught exception 'ImagickException' with message 'Unrecognized color string' in /home/simandsi/application/core/v1/view/image/action.php:122
+Stack trace:
+#0 /home/simandsi/application/core/v1/view/image/action.php(122): Imagick->newimage(256, 256, 'magnolia', 'png')
+#1 /home/simandsi/application/core/v1/Framework/Init.php(83): image_Action->init()
+#2 /home/simandsi/application/core/v1/Framework/Init.php(25): Core_Framework_Init->get_action()
+#3 /home/simandsi/public_html/index.php(82): Core_Framework_Init->start(Array)
+#4 {main}
+  thrown in /home/simandsi/application/core/v1/view/image/action.php on line 122
+[25-Sep-2012 16:15:34] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[25-Sep-2012 16:16:04] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[25-Sep-2012 16:16:37] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[25-Sep-2012 16:18:32] PHP Fatal error:  Uncaught exception 'ImagickException' with message 'Can not process empty Imagick object' in /home/simandsi/application/core/v1/view/image/action.php:118
+Stack trace:
+#0 /home/simandsi/application/core/v1/view/image/action.php(118): Imagick->thumbnailimage(256, 256, true)
+#1 /home/simandsi/application/core/v1/Framework/Init.php(83): image_Action->init()
+#2 /home/simandsi/application/core/v1/Framework/Init.php(25): Core_Framework_Init->get_action()
+#3 /home/simandsi/public_html/index.php(82): Core_Framework_Init->start(Array)
+#4 {main}
+  thrown in /home/simandsi/application/core/v1/view/image/action.php on line 118
+[25-Sep-2012 16:43:42] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/simandsi/application/core/v1/view/image/action.php on line 128
+[25-Sep-2012 16:43:46] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/simandsi/application/core/v1/view/image/action.php on line 128
+[25-Sep-2012 16:43:48] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/simandsi/application/core/v1/view/image/action.php on line 128
+[25-Sep-2012 16:43:53] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/simandsi/application/core/v1/view/image/action.php on line 128
+[25-Sep-2012 16:43:54] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/simandsi/application/core/v1/view/image/action.php on line 128
+[25-Sep-2012 17:43:05] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 17:43:07] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 17:43:16] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 17:43:20] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 17:43:24] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 17:43:27] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 17:43:30] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 20:06:06] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 20:06:06] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[25-Sep-2012 22:17:33] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[26-Sep-2012 03:04:06] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[26-Sep-2012 03:36:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[26-Sep-2012 09:44:11] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 09:44:34] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 09:45:22] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/build/view.php on line 30
+[26-Sep-2012 09:45:49] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 10:24:23] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 10:25:12] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 12:15:05] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 12:15:28] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 12:16:42] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/build/view.php on line 30
+[26-Sep-2012 12:17:23] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 12:17:34] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 12:17:58] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/build/view.php on line 30
+[26-Sep-2012 14:29:29] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 14:29:36] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[26-Sep-2012 14:37:19] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[26-Sep-2012 15:43:32] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 16:43:51] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[26-Sep-2012 17:59:51] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/build/view.php on line 30
+[26-Sep-2012 18:00:19] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 18:16:24] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 18:18:56] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[26-Sep-2012 18:19:08] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 18:20:02] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 18:20:02] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/build/view.php on line 30
+[26-Sep-2012 18:53:47] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[26-Sep-2012 19:00:32] PHP Fatal error:  Uncaught exception 'ImagickException' with message 'Imagick::__construct() [<a href='imagick.--construct'>imagick.--construct</a>]: HTTP request failed! HTTP/1.0 400 Bad Request
+' in /home/simandsi/application/core/v1/view/image/action.php:114
+Stack trace:
+#0 /home/simandsi/application/core/v1/view/image/action.php(114): Imagick->__construct('http://social.a...')
+#1 /home/simandsi/application/core/v1/Framework/Init.php(83): image_Action->init()
+#2 /home/simandsi/application/core/v1/Framework/Init.php(25): Core_Framework_Init->get_action()
+#3 /home/simandsi/public_html/index.php(82): Core_Framework_Init->start(Array)
+#4 {main}
+  thrown in /home/simandsi/application/core/v1/view/image/action.php on line 114
+[26-Sep-2012 20:23:19] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[26-Sep-2012 22:25:10] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[26-Sep-2012 22:51:34] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 02:24:51] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 08:39:24] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 08:39:26] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 10:31:53] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 10:50:02] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 11:32:24] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 12:40:30] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[27-Sep-2012 12:42:03] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[27-Sep-2012 15:06:10] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 15:50:57] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 15:50:58] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[27-Sep-2012 15:50:59] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/build/view.php on line 30
+[27-Sep-2012 16:12:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 16:39:21] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 17:16:27] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 18:08:11] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 18:45:59] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 18:46:20] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 19:05:31] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 21:20:21] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 21:42:48] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[27-Sep-2012 22:08:17] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 01:45:28] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 03:25:41] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 04:04:59] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 04:05:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 04:19:09] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[28-Sep-2012 04:19:55] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 04:19:56] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 04:22:11] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 04:25:01] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 05:03:28] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/build/view.php on line 30
+[28-Sep-2012 10:11:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 10:37:05] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 11:11:39] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 11:22:19] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 11:22:22] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 11:26:50] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[28-Sep-2012 11:59:15] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[28-Sep-2012 12:06:28] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[28-Sep-2012 12:12:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 13:08:57] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 13:22:25] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 14:43:14] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[28-Sep-2012 14:58:03] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 22:49:07] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 23:40:54] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[28-Sep-2012 23:58:34] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[29-Sep-2012 00:01:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 02:17:39] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 02:17:39] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 03:51:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 05:51:35] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 11:53:59] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 15:06:12] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 15:06:21] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 15:29:07] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/search/view.php on line 17
+[29-Sep-2012 19:19:43] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 19:25:23] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 19:44:09] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 19:44:13] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[29-Sep-2012 20:59:44] PHP Warning:  Invalid argument supplied for foreach() in /home/simandsi/application/core/v1/view/build/view.php on line 30
+[30-Sep-2012 00:15:41] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[30-Sep-2012 00:16:46] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[30-Sep-2012 01:36:51] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[30-Sep-2012 04:22:11] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[30-Sep-2012 06:29:06] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[30-Sep-2012 16:21:12] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[30-Sep-2012 21:02:24] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[30-Sep-2012 22:02:55] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[30-Sep-2012 23:28:17] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[30-Sep-2012 23:28:20] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[01-Oct-2012 01:11:57] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[01-Oct-2012 01:58:07] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[01-Oct-2012 03:33:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[01-Oct-2012 03:49:15] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[01-Oct-2012 04:05:56] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[01-Oct-2012 06:58:22] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[01-Oct-2012 07:07:11] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[01-Oct-2012 08:03:23] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[01-Oct-2012 08:51:47] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[01-Oct-2012 09:07:37] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
+[01-Oct-2012 10:38:00] PHP Fatal error:  Call to a member function pre() on a non-object in /home/simandsi/application/core/v1/Framework/Init.php on line 82
